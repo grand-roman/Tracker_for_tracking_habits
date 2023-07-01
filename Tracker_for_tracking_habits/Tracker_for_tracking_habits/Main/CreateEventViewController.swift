@@ -3,7 +3,7 @@ import UIKit
 enum Event {
     case regular
     case irregular
-    
+
     var titleText: String {
         switch self {
         case .regular:
@@ -19,7 +19,7 @@ protocol CreateEventViewControllerDelegate: AnyObject {
 }
 
 class CreateEventViewController: UIViewController {
-    
+
     private let event: Event
     private let nameCell = ["Категория", "Расписание"]
     private let limitNumberOfCharacters = 38
@@ -29,7 +29,7 @@ class CreateEventViewController: UIViewController {
     private var scheduleSubTitle: String = ""
     private var dayOfWeek: [String] = []
     public weak var delegate: CreateEventViewControllerDelegate?
-    
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .white
@@ -38,11 +38,11 @@ class CreateEventViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
+
     private var contentSize: CGSize {
         CGSize(width: view.frame.width, height: view.frame.height + 400)
     }
-    
+
     private lazy var label: UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -51,7 +51,7 @@ class CreateEventViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.indent(size: 10)
@@ -65,7 +65,7 @@ class CreateEventViewController: UIViewController {
         textField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         return textField
     }()
-    
+
     private lazy var errorLabel: UILabel = {
         let label = UILabel()
         label.textColor = .YPRed
@@ -74,7 +74,7 @@ class CreateEventViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private lazy var createEventView: UIView = {
         let view = UIView()
         view.backgroundColor = .YPBackground
@@ -82,28 +82,28 @@ class CreateEventViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private lazy var separatorView: UIView = {
         let view = UIView()
         view.backgroundColor = .YPGray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private lazy var forwardImage1: UIImageView = {
         let forwardImage = UIImageView()
         forwardImage.image = UIImage(named: "chevronForward")
         forwardImage.translatesAutoresizingMaskIntoConstraints = false
         return forwardImage
     }()
-    
+
     private lazy var forwardImage2: UIImageView = {
         let forwardImage = UIImageView()
         forwardImage.image = UIImage(named: "chevronForward")
         forwardImage.translatesAutoresizingMaskIntoConstraints = false
         return forwardImage
     }()
-    
+
     private lazy var categoryButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Категория", for: .normal)
@@ -115,14 +115,14 @@ class CreateEventViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     private lazy var scheduleButton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(scheduleButtonAction), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     private lazy var scheduleButtonTitle: UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -131,7 +131,7 @@ class CreateEventViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private lazy var scheduleButtonSubTitle: UILabel = {
         let label = UILabel()
         label.textColor = .YPGray
@@ -140,7 +140,7 @@ class CreateEventViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private lazy var createEventButton: UIButton = {
         let button = UIButton()
         button.setTitle("Создать", for: .normal)
@@ -150,7 +150,7 @@ class CreateEventViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle("Отменить", for: .normal)
@@ -163,44 +163,44 @@ class CreateEventViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     init(_ event: Event) {
         self.event = event
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         addSubviews()
         setupLayout()
     }
-    
+
     @objc func createEventButtonAction() {
         let tracker = Tracker(id: UUID(), name: textField.text ?? "", emoji: "", color: .yellow, schedule: schedule)
         delegate?.createTracker(tracker, categoryName: "Важное")
         dismiss(animated: true)
     }
-    
+
     @objc private func cancelButtonAction() {
         dismiss(animated: true)
     }
-    
+
     @objc private func categoryButtonAction() {
         let categoryViewController = CategoryViewController()
         present(categoryViewController, animated: true)
     }
-    
+
     @objc private func scheduleButtonAction() {
         let scheduleViewController = ScheduleViewController()
         scheduleViewController.delegate = self
         present(scheduleViewController, animated: true)
     }
-    
+
     private func addSubviews() {
         view.addSubview(scrollView)
         view.addSubview(label)
@@ -218,59 +218,59 @@ class CreateEventViewController: UIViewController {
         scrollView.addSubview(createEventButton)
         scrollView.addSubview(cancelButton)
     }
-    
+
     private func setupLayout() {
         let createEventViewHeight: CGFloat = event == .regular ? 150 : 75
         heightAnchor = errorLabel.heightAnchor.constraint(equalToConstant: 0)
         var constraints = [
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 27),
-            
+
             scrollView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 24),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
+
             textField.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 38),
             textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             textField.heightAnchor.constraint(equalToConstant: 75),
-            
+
             errorLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 0),
             errorLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             heightAnchor!,
-            
+
             createEventView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: 16),
             createEventView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             createEventView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             createEventView.heightAnchor.constraint(equalToConstant: createEventViewHeight),
-            
+
             categoryButton.topAnchor.constraint(equalTo: createEventView.topAnchor),
-            categoryButton.bottomAnchor.constraint(equalTo:  self.event == .regular ? separatorView.topAnchor : createEventView.bottomAnchor),
+            categoryButton.bottomAnchor.constraint(equalTo: self.event == .regular ? separatorView.topAnchor : createEventView.bottomAnchor),
             categoryButton.trailingAnchor.constraint(equalTo: createEventView.trailingAnchor),
             categoryButton.leadingAnchor.constraint(equalTo: createEventView.leadingAnchor),
-            
+
             forwardImage1.trailingAnchor.constraint(equalTo: categoryButton.trailingAnchor, constant: -24),
             forwardImage1.centerYAnchor.constraint(equalTo: categoryButton.centerYAnchor),
-            
+
             cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             cancelButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -35),
             cancelButton.widthAnchor.constraint(equalToConstant: 161),
             cancelButton.heightAnchor.constraint(equalToConstant: 60),
-            
+
             createEventButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             createEventButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -35),
             createEventButton.widthAnchor.constraint(equalToConstant: 161),
             createEventButton.heightAnchor.constraint(equalToConstant: 60)
         ]
-        
+
         if event == .regular {
             constraints += [
                 separatorView.centerYAnchor.constraint(equalTo: createEventView.centerYAnchor),
                 separatorView.trailingAnchor.constraint(equalTo: createEventView.trailingAnchor, constant: -10),
                 separatorView.leadingAnchor.constraint(equalTo: createEventView.leadingAnchor, constant: 10),
                 separatorView.heightAnchor.constraint(equalToConstant: 1),
-                
+
                 scheduleButton.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
                 scheduleButton.bottomAnchor.constraint(equalTo: createEventView.bottomAnchor),
                 scheduleButton.trailingAnchor.constraint(equalTo: createEventView.trailingAnchor),
@@ -281,14 +281,14 @@ class CreateEventViewController: UIViewController {
         }
         NSLayoutConstraint.activate(constraints)
     }
-    
+
     func updateScheduleButton() {
         if scheduleSubTitle == "" {
             scheduleButton.addSubview(scheduleButtonTitle)
             NSLayoutConstraint.activate([
                 scheduleButtonTitle.centerYAnchor.constraint(equalTo: scheduleButton.centerYAnchor),
                 scheduleButtonTitle.leadingAnchor.constraint(equalTo: scheduleButton.leadingAnchor, constant: 16)
-            ])
+                ])
         } else {
             scheduleButton.addSubview(scheduleButtonTitle)
             scheduleButton.addSubview(scheduleButtonSubTitle)
@@ -297,11 +297,11 @@ class CreateEventViewController: UIViewController {
                 scheduleButtonTitle.topAnchor.constraint(equalTo: scheduleButton.topAnchor, constant: 15),
                 scheduleButtonSubTitle.leadingAnchor.constraint(equalTo: scheduleButton.leadingAnchor, constant: 16),
                 scheduleButtonSubTitle.bottomAnchor.constraint(equalTo: scheduleButton.bottomAnchor, constant: -13)
-            ])
+                ])
             scheduleButtonSubTitle.text = scheduleSubTitle
         }
     }
-    
+
     @objc func textFieldChanged() {
         guard let number = textField.text?.count else { return }
         numberOfCharacters = number
@@ -316,15 +316,15 @@ class CreateEventViewController: UIViewController {
 }
 
 extension UITextField {
-    
-    func indent(size:CGFloat) {
+
+    func indent(size: CGFloat) {
         self.leftView = UIView(frame: CGRect(x: self.frame.minX, y: self.frame.minY, width: size, height: self.frame.height))
         self.leftViewMode = .always
     }
 }
 
 extension CreateEventViewController: UITextFieldDelegate {
-    
+
     func textField(
         _ textField: UITextField,
         shouldChangeCharactersIn range: NSRange,
@@ -333,13 +333,13 @@ extension CreateEventViewController: UITextFieldDelegate {
         let maxLenght = limitNumberOfCharacters
         let currentString = (textField.text ?? "") as NSString
         let newString = currentString.replacingCharacters(in: range, with: string)
-        
+
         return newString.count <= maxLenght
     }
 }
 
 extension CreateEventViewController: ScheduleViewControllerDelegate {
-    
+
     func createSchedule(schedule: [DayOfWeek]) {
         self.schedule = schedule
         let scheduleString = schedule.map { $0.shortName }.joined(separator: ", ")

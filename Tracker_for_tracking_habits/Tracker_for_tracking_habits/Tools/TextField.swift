@@ -1,7 +1,7 @@
 import UIKit
 
 final class TextField: UISearchTextField {
-    
+
     func setUpTextFieldOnTrackerView() {
         layer.cornerRadius = 10
         layer.backgroundColor = UIColor.YPBackground.cgColor
@@ -10,7 +10,7 @@ final class TextField: UISearchTextField {
         placeholder = "Поиск"
         font = UIFont.systemFont(ofSize: 17)
     }
-    
+
     func setUpTextFieldOnCreateTracker() {
         layer.cornerRadius = 10
         leftView = nil

@@ -15,10 +15,10 @@ enum DayOfWeek: String, CaseIterable {
     case friday = "Пятница"
     case saturday = "Суббота"
     case sunday = "Воскресенье"
-    
+
     var shortName: String {
         switch self {
-            
+
         case .monday:
             return "Пн"
         case .tuesday:
@@ -35,10 +35,10 @@ enum DayOfWeek: String, CaseIterable {
             return "Вс"
         }
     }
-    
+
     var numberOfDay: Int {
         switch self {
-            
+
         case .monday:
             return 2
         case .tuesday:
