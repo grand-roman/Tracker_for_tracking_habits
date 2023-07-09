@@ -32,44 +32,6 @@ final class TrackersViewController: UIViewController {
         return field
     }()
 
-    private let placeholderImage: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "TrackersPlaceholder"))
-
-        image.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        image.heightAnchor.constraint(equalTo: image.widthAnchor).isActive = true
-
-        return image
-    }()
-
-    private let placeholderLabel: UILabel = {
-        let label = UILabel()
-
-        label.text = "Что будем отслеживать?"
-        label.textColor = .ypBlackDay
-        label.font = .systemFont(ofSize: 12, weight: .medium)
-
-        return label
-    }()
-
-    private let placeholderErrorImage: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "TrackersErrorPlaceholder"))
-
-        image.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        image.heightAnchor.constraint(equalTo: image.widthAnchor).isActive = true
-
-        return image
-    }()
-
-    private let placeholderErrorLabel: UILabel = {
-        let label = UILabel()
-
-        label.text = "Ничего не найдено"
-        label.textColor = .ypBlackDay
-        label.font = .systemFont(ofSize: 12, weight: .medium)
-
-        return label
-    }()
-
     private let trackerCollection: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
@@ -78,34 +40,22 @@ final class TrackersViewController: UIViewController {
             forCellWithReuseIdentifier: TrackerCollectionViewCell.identifier
         )
         collection.register(
-            TrackerCollectionViewHeader.self,
+            CollectionViewHeader.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: TrackerCollectionViewHeader.identifier
+            withReuseIdentifier: CollectionViewHeader.identifier
         )
         return collection
     }()
 
+    private let placeholderView = PlaceholderView()
     private let widthParameters = CollectionWidthParameters(cellsNumber: 2, leftInset: 16, rightInset: 16, interCellSpacing: 10)
+    private let categoryStore = CategoryStore()
+    private let trackerStore = TrackerStore()
+    private let recordStore = RecordStore()
 
-    private var categories: Array<CategoryModel> = [
-        CategoryModel(
-            title: "Важное",
-            trackers: [
-                TrackerModel(
-                    id: UUID(),
-                    name: "Догнать по спринтам",
-                    color: .ypSelection5,
-                    emoji: "🏃‍",
-                    schedule: [.monday, .tuesday, .wednesday, .thursday, .friday]
-                )
-            ]
-        )
-    ]
-
+    private var categories: Array<CategoryModel> = []
     private var visibleCategories: Array<CategoryModel> = []
-
     private var completedRecords: Array<RecordModel> = []
-
     private var selectedDate = Date()
 
     override func viewDidLoad() {
@@ -114,10 +64,19 @@ final class TrackersViewController: UIViewController {
         trackerCollection.dataSource = self
         trackerCollection.delegate = self
 
+        trackerStore.delegate = self
+        recordStore.delegate = self
+
+        TestDataLoader.shared.loadTestData()
+
         setupNavigationBar()
         makeViewLayout()
         hideKeyboardWhenDidTap()
+
+        categories = categoryStore.fetchedCategories
+        completedRecords = recordStore.fetchedRecords
         visibleCategories.append(contentsOf: categories)
+
         didChangeSelectedDate()
     }
 
@@ -126,9 +85,9 @@ final class TrackersViewController: UIViewController {
     }
 
     @objc private func didTapAddButton() {
-        let createTrackerController = CreateTrackerViewController()
-        createTrackerController.delegate = self
-        present(UINavigationController(rootViewController: createTrackerController), animated: true)
+        let trackerController = AddTrackerViewController()
+        trackerController.delegate = self
+        present(UINavigationController(rootViewController: trackerController), animated: true)
     }
 
     private func setupNavigationBar() {
@@ -149,18 +108,11 @@ final class TrackersViewController: UIViewController {
 
         view.addSubview(headerStack)
         view.addSubview(trackerCollection)
-        view.addSubview(placeholderImage)
-        view.addSubview(placeholderLabel)
-        view.addSubview(placeholderErrorImage)
-        view.addSubview(placeholderErrorLabel)
+        view.addSubview(placeholderView)
 
         headerStack.translatesAutoresizingMaskIntoConstraints = false
         trackerCollection.translatesAutoresizingMaskIntoConstraints = false
-        placeholderImage.translatesAutoresizingMaskIntoConstraints = false
-        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
-        placeholderErrorImage.translatesAutoresizingMaskIntoConstraints = false
-        placeholderErrorLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        placeholderView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             headerStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -172,23 +124,11 @@ final class TrackersViewController: UIViewController {
             trackerCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             trackerCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
-            placeholderImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            placeholderImage.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-
-            placeholderLabel.centerXAnchor.constraint(equalTo: placeholderImage.centerXAnchor),
-            placeholderLabel.topAnchor.constraint(equalTo: placeholderImage.bottomAnchor, constant: 8),
-
-            placeholderErrorImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            placeholderErrorImage.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-
-            placeholderErrorLabel.centerXAnchor.constraint(equalTo: placeholderErrorImage.centerXAnchor),
-            placeholderErrorLabel.topAnchor.constraint(equalTo: placeholderErrorImage.bottomAnchor, constant: 8)
+            placeholderView.topAnchor.constraint(equalTo: headerStack.bottomAnchor),
+            placeholderView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            placeholderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            placeholderView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             ])
-
-        placeholderImage.isHidden = true
-        placeholderLabel.isHidden = true
-        placeholderErrorImage.isHidden = true
-        placeholderErrorLabel.isHidden = true
     }
 
     private func makeHeaderStack() -> UIStackView {
@@ -239,13 +179,13 @@ extension TrackersViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let trackerHeader = collectionView
-            .dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TrackerCollectionViewHeader.identifier, for: indexPath) as? TrackerCollectionViewHeader
+        guard let header = collectionView
+            .dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewHeader.identifier, for: indexPath) as? CollectionViewHeader
             else {
-            preconditionFailure("Failed to cast UICollectionReusableView as TrackerCollectionViewHeader")
+            preconditionFailure("Failed to cast UICollectionReusableView as CollectionViewHeader")
         }
-        trackerHeader.configure(model: visibleCategories[indexPath.section])
-        return trackerHeader
+        header.configure(model: visibleCategories[indexPath.section])
+        return header
     }
 }
 
@@ -281,37 +221,40 @@ extension TrackersViewController: TrackerCollectionViewCellDelegate {
         guard selectedDate <= Date() else {
             return
         }
-        completedRecords.append(RecordModel(trackerID: id, completionDate: selectedDate))
+        try! recordStore.addRecord(model: RecordModel(trackerID: id, completionDate: selectedDate))
         trackerCollection.reloadItems(at: [indexPath])
     }
 
     func uncompleteTracker(with id: UUID, at indexPath: IndexPath) {
-        completedRecords.removeAll { isMatchRecord(model: $0, with: id) }
+        try! recordStore.deleteRecord(model: completedRecords.filter({ isMatchRecord(model: $0, with: id) })[0])
         trackerCollection.reloadItems(at: [indexPath])
     }
 }
 
-private let mockCategory: Array<String> = [
-    "Приколы",
-    "Грусть",
-    "Спринты",
-    "ЯП",
-]
+extension TrackersViewController: AddTrackerViewControllerDelegate {
 
-extension TrackersViewController: CreateTrackerViewControllerDelegate {
-
-    func didCreateNewTracker(model: TrackerModel) {
-
-        let categoryNumber = Int.random(in: 0..<mockCategory.count)
-        categories.append(
-            CategoryModel(
-                title: mockCategory[categoryNumber],
-                trackers: [model]
-            )
-        )
-
+    func didAddNewTracker(model: TrackerModel) {
+        var model = model
+        if model.schedule.isEmpty {
+            model.date = selectedDate
+        }
+        try! trackerStore.addTracker(model: model, to: categories[0].title)
         didChangeSelectedDate()
         dismiss(animated: true)
+    }
+}
+
+extension TrackersViewController: TrackerStoreDelegate {
+
+    func storeDidChangeTrackers() {
+        categories = categoryStore.fetchedCategories
+    }
+}
+
+extension TrackersViewController: RecordStoreDelegate {
+
+    func storeDidChangeRecords() {
+        completedRecords = recordStore.fetchedRecords
     }
 }
 
@@ -346,8 +289,7 @@ private extension TrackersViewController {
             }
         }
         visibleCategories = searchedCategories
-        visibleCategories.isEmpty ? showErrorPlaceholder() : hideErrorPlaceholder()
-        hidePlaceholder()
+        showAppropriatePlaceholder()
         trackerCollection.reloadData()
     }
 
@@ -358,20 +300,34 @@ private extension TrackersViewController {
             var visibleTrackers: Array<TrackerModel> = []
 
             for tracker in category.trackers {
-                guard let weekDay = WeekDay(rawValue: calculateWeekDayNumber(for: selectedDate)),
-                    tracker.schedule.contains(weekDay)
-                    else {
-                    continue
+                if isVisibleHabit(model: tracker) || isVisibleEvent(model: tracker) {
+                    visibleTrackers.append(tracker)
                 }
-                visibleTrackers.append(tracker)
             }
             if !visibleTrackers.isEmpty {
                 visibleCategories.append(CategoryModel(title: category.title, trackers: visibleTrackers))
             }
         }
-        visibleCategories.isEmpty ? showPlaceholder() : hidePlaceholder()
-        hideErrorPlaceholder()
+        showAppropriatePlaceholder()
         trackerCollection.reloadData()
+    }
+
+    func isVisibleHabit(model: TrackerModel) -> Bool {
+        if let weekDay = WeekDay(rawValue: calculateWeekDayNumber(for: selectedDate)),
+            model.schedule.contains(weekDay)
+        {
+            return true
+        }
+        return false
+    }
+
+    func isVisibleEvent(model: TrackerModel) -> Bool {
+        if let date = model.date,
+            Calendar.current.isDate(date, inSameDayAs: selectedDate)
+        {
+            return true
+        }
+        return false
     }
 
     func calculateWeekDayNumber(for date: Date) -> Int {
@@ -381,23 +337,21 @@ private extension TrackersViewController {
         return (weekDayNumber - calendar.firstWeekday + daysInWeek) % daysInWeek + 1
     }
 
-    func showPlaceholder() {
-        placeholderImage.isHidden = false
-        placeholderLabel.isHidden = false
-    }
-
-    func hidePlaceholder() {
-        placeholderImage.isHidden = true
-        placeholderLabel.isHidden = true
-    }
-
-    func showErrorPlaceholder() {
-        placeholderErrorImage.isHidden = false
-        placeholderErrorLabel.isHidden = false
-    }
-
-    func hideErrorPlaceholder() {
-        placeholderErrorImage.isHidden = true
-        placeholderErrorLabel.isHidden = true
+    func showAppropriatePlaceholder() {
+        if categories.isEmpty {
+            placeholderView.isHidden = false
+            placeholderView.configure(
+                image: UIImage(named: "TrackersPlaceholder"),
+                caption: "Что будем отслеживать?"
+            )
+        } else if visibleCategories.isEmpty {
+            placeholderView.isHidden = false
+            placeholderView.configure(
+                image: UIImage(named: "SearchPlaceholder"),
+                caption: "Ничего не найдено"
+            )
+        } else {
+            placeholderView.isHidden = true
+        }
     }
 }
