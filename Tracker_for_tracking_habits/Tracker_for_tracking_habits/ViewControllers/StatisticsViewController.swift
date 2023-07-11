@@ -12,23 +12,14 @@ final class StatisticsViewController: UIViewController {
         return label
     }()
 
-    private let placeholderImage: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "StatisticsPlaceholder"))
+    private let placeholderView: PlaceholderView = {
+        let view = PlaceholderView()
 
-        image.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        image.heightAnchor.constraint(equalTo: image.widthAnchor).isActive = true
-
-        return image
-    }()
-
-    private let placeholderLabel: UILabel = {
-        let label = UILabel()
-
-        label.text = "Анализировать пока нечего"
-        label.textColor = .ypBlackDay
-        label.font = .systemFont(ofSize: 12, weight: .medium)
-
-        return label
+        view.configure(
+            image: UIImage(named: "StatisticsPlaceholder"),
+            caption: "Анализировать пока нечего"
+        )
+        return view
     }()
 
     override func viewDidLoad() {
@@ -41,22 +32,19 @@ final class StatisticsViewController: UIViewController {
         view.backgroundColor = .ypWhiteDay
 
         view.addSubview(titleLabel)
-        view.addSubview(placeholderImage)
-        view.addSubview(placeholderLabel)
+        view.addSubview(placeholderView)
 
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        placeholderImage.translatesAutoresizingMaskIntoConstraints = false
-        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        placeholderView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
 
-            placeholderImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            placeholderImage.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-
-            placeholderLabel.centerXAnchor.constraint(equalTo: placeholderImage.centerXAnchor),
-            placeholderLabel.topAnchor.constraint(equalTo: placeholderImage.bottomAnchor, constant: 8)
+            placeholderView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            placeholderView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            placeholderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            placeholderView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             ])
     }
 }

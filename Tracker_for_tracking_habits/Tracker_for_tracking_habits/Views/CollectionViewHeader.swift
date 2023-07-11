@@ -1,8 +1,8 @@
 import UIKit
 
-final class TrackerCollectionViewHeader: UICollectionReusableView {
+final class CollectionViewHeader: UICollectionReusableView {
 
-    static let identifier = "TrackerCollectionViewHeader"
+    static let identifier = "CollectionViewHeader"
 
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -25,6 +25,10 @@ final class TrackerCollectionViewHeader: UICollectionReusableView {
 
     func configure(model: CategoryModel) {
         titleLabel.text = model.title
+    }
+
+    func configure(title: String) {
+        titleLabel.text = title
     }
 
     private func makeViewLayout() {

@@ -31,6 +31,12 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
         return view
     }()
 
+    private let emojiLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16, weight: .medium)
+        return label
+    }()
+
     private let nameLabel: UILabel = {
         let label = UILabel()
 
@@ -66,6 +72,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
     private var trackerID: UUID?
     private var indexPath: IndexPath?
     private var isCompleted: Bool?
+    private var isHabit: Bool?
 
     weak var delegate: TrackerCollectionViewCellDelegate?
 
@@ -79,27 +86,32 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        counterLabel.text?.removeAll()
+        incrementButton.setImage(UIImage(), for: .normal)
+    }
+
     func configure(model: TrackerModel, at indexPath: IndexPath, isCompleted: Bool, completedDays: Int) {
         self.trackerID = model.id
         self.indexPath = indexPath
         self.isCompleted = isCompleted
+        self.isHabit = !model.schedule.isEmpty
 
         nameLabel.text = model.name
-        setCounter(days: completedDays)
-
-        let image = isCompleted ? UIImage(named: "CheckMarkButton") : UIImage(named: "PlusButton")
-        incrementButton.setImage(image?.withTintColor(.ypWhiteDay), for: .normal)
-        incrementButton.backgroundColor = isCompleted ? model.color.withAlphaComponent(0.3) : model.color
+        emojiLabel.text = model.emoji
         canvasView.backgroundColor = model.color
 
-        let label = UILabel()
-        label.text = model.emoji
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        if isHabit! {
+            setCounter(days: completedDays)
 
-        emojiView.addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerXAnchor.constraint(equalTo: emojiView.centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: emojiView.centerYAnchor).isActive = true
+            let image = isCompleted ? UIImage(named: "CheckMarkButton") : UIImage(named: "PlusButton")
+            incrementButton.setImage(image?.withTintColor(.ypWhiteDay), for: .normal)
+            incrementButton.backgroundColor = isCompleted ? model.color.withAlphaComponent(0.3) : model.color
+        } else {
+            incrementButton.backgroundColor = model.color
+        }
     }
 
     private func setCounter(days: Int) {
@@ -120,7 +132,8 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
     }
 
     @objc private func incrementDayCounter() {
-        guard let isCompleted = isCompleted,
+        guard isHabit!,
+            let isCompleted = isCompleted,
             let trackerID = trackerID,
             let indexPath = indexPath
             else {
@@ -136,12 +149,14 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
     private func makeViewLayout() {
         contentView.addSubview(canvasView)
         contentView.addSubview(emojiView)
+        contentView.addSubview(emojiLabel)
         contentView.addSubview(nameLabel)
         contentView.addSubview(counterLabel)
         contentView.addSubview(incrementButton)
 
         canvasView.translatesAutoresizingMaskIntoConstraints = false
         emojiView.translatesAutoresizingMaskIntoConstraints = false
+        emojiLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         counterLabel.translatesAutoresizingMaskIntoConstraints = false
         incrementButton.translatesAutoresizingMaskIntoConstraints = false
@@ -153,6 +168,9 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
 
             emojiView.topAnchor.constraint(equalTo: canvasView.topAnchor, constant: 12),
             emojiView.leadingAnchor.constraint(equalTo: canvasView.leadingAnchor, constant: 12),
+
+            emojiLabel.centerXAnchor.constraint(equalTo: emojiView.centerXAnchor),
+            emojiLabel.centerYAnchor.constraint(equalTo: emojiView.centerYAnchor),
 
             nameLabel.bottomAnchor.constraint(equalTo: canvasView.bottomAnchor, constant: -12),
             nameLabel.leadingAnchor.constraint(equalTo: canvasView.leadingAnchor, constant: 12),
