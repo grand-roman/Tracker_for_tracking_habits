@@ -233,12 +233,12 @@ extension TrackersViewController: TrackerCollectionViewCellDelegate {
 
 extension TrackersViewController: AddTrackerViewControllerDelegate {
 
-    func didAddNewTracker(model: TrackerModel) {
+    func didAddNewTracker(model: TrackerModel, to category: String) {
         var model = model
         if model.schedule.isEmpty {
             model.date = selectedDate
         }
-        try! trackerStore.addTracker(model: model, to: categories[0].title)
+        try! trackerStore.addTracker(model: model, to: category)
         didChangeSelectedDate()
         dismiss(animated: true)
     }

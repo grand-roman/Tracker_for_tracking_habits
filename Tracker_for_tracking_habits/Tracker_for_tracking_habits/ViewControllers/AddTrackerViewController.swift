@@ -1,7 +1,7 @@
 import UIKit
 
 protocol AddTrackerViewControllerDelegate: AnyObject {
-    func didAddNewTracker(model: TrackerModel)
+    func didAddNewTracker(model: TrackerModel, to category: String)
 }
 
 final class AddTrackerViewController: UIViewController {
@@ -98,8 +98,8 @@ final class AddTrackerViewController: UIViewController {
 
 extension AddTrackerViewController: CreateTrackerViewControllerDelegate {
 
-    func didCreateNewTracker(model: TrackerModel) {
-        delegate?.didAddNewTracker(model: model)
+    func didCreateNewTracker(model: TrackerModel, in category: String) {
+        delegate?.didAddNewTracker(model: model, to: category)
     }
 
     func didCancelNewTracker() {

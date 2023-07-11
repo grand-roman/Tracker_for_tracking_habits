@@ -1,7 +1,7 @@
 import UIKit
 
 protocol CreateTrackerViewControllerDelegate: AnyObject {
-    func didCreateNewTracker(model: TrackerModel)
+    func didCreateNewTracker(model: TrackerModel, in category: String)
     func didCancelNewTracker()
 }
 
@@ -105,6 +105,7 @@ final class CreateTrackerViewController: UIViewController {
     ]
 
     private var settings: Array<SettingOptions> = []
+    private var selectedCategoryTitle: String?
     private var configuredSchedule: Set<WeekDay> = []
 
     private var currentEmojiIndexPath: IndexPath?
@@ -130,6 +131,7 @@ final class CreateTrackerViewController: UIViewController {
             return
         }
         if trackerName.isEmpty
+            || selectedCategoryTitle == nil
             || configuredSchedule.isEmpty && !isIrregularEventView
             || currentEmojiIndexPath == nil
             || currentColorIndexPath == nil
@@ -147,7 +149,9 @@ final class CreateTrackerViewController: UIViewController {
     }
 
     @objc private func didTapCreateButton() {
-        guard let trackerName = nameField.text else {
+        guard let trackerName = nameField.text,
+            let categoryTitle = selectedCategoryTitle
+        else {
             return
         }
         let tracker = TrackerModel(
@@ -157,7 +161,7 @@ final class CreateTrackerViewController: UIViewController {
             emoji: emojis[currentEmojiIndexPath?.item ?? 0],
             schedule: configuredSchedule
         )
-        delegate?.didCreateNewTracker(model: tracker)
+        delegate?.didCreateNewTracker(model: tracker, in: categoryTitle)
     }
 
     private func setupNavigationBar() {
@@ -279,7 +283,11 @@ final class CreateTrackerViewController: UIViewController {
         settingTable.reloadData()
     }
 
-    private func didTapSettingCategory() { }
+    private func didTapSettingCategory() {
+        let categoryController = SelectCategoryViewController()
+        categoryController.delegate = self
+        present(UINavigationController(rootViewController: categoryController), animated: true)
+    }
 
     private func didTapSettingSchedule() {
         let scheduleController = ConfigureScheduleViewController()
@@ -428,6 +436,15 @@ extension CreateTrackerViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         emojiColorCollection.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+    }
+}
+
+extension CreateTrackerViewController: SelectCategoryViewControllerDelegate {
+
+    func didSelect(category title: String) {
+        selectedCategoryTitle = title
+        setCreateButtonState()
+        dismiss(animated: true)
     }
 }
 
