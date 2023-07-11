@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "trackers_placeholder.png",
+      "filename" : "onboarding_background_blue.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "trackers_placeholder@2x.png",
+      "filename" : "onboarding_background_blue@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "trackers_placeholder@3x.png",
+      "filename" : "onboarding_background_blue@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
