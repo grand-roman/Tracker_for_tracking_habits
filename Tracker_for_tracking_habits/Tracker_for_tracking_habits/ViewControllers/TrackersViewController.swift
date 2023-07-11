@@ -341,7 +341,7 @@ private extension TrackersViewController {
         if categories.isEmpty {
             placeholderView.isHidden = false
             placeholderView.configure(
-                image: UIImage(named: "TrackersPlaceholder"),
+                image: UIImage(named: "CategoriesPlaceholder"),
                 caption: "Что будем отслеживать?"
             )
         } else if visibleCategories.isEmpty {
