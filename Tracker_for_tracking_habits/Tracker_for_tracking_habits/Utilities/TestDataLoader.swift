@@ -15,7 +15,7 @@ final class TestDataLoader {
         return delegate.persistentContainer.viewContext
     }()
 
-    private init() { }
+    private init() {}
 
     func loadTestData() {
         let storedCategories = try! context.fetch(CategoryEntity.fetchRequest())
