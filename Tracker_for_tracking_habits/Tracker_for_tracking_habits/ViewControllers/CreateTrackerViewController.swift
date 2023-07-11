@@ -7,6 +7,10 @@ protocol CreateTrackerViewControllerDelegate: AnyObject {
 
 final class CreateTrackerViewController: UIViewController {
 
+    weak var delegate: CreateTrackerViewControllerDelegate?
+
+    var isIrregularEventView: Bool = false
+
     private lazy var nameField: CustomTextField = {
         let field = CustomTextField()
 
@@ -89,7 +93,9 @@ final class CreateTrackerViewController: UIViewController {
     private let widthParameters = CollectionWidthParameters(cellsNumber: 6, leftInset: 20, rightInset: 20, interCellSpacing: 10)
 
     private let emojis: Array<String> = [
-        "🤡", "😭", "🥲", "😤", "🏃‍",
+        "🙂", "😻", "🌺", "🐶", "❤️", "😱",
+        "😇", "😡", "🥶", "🤔", "🙌", "🍔",
+        "🥦", "🏓", "🥇", "🎸", "🏝", "😪"
     ]
 
     private let colors: Array<UIColor> = [
@@ -103,10 +109,6 @@ final class CreateTrackerViewController: UIViewController {
 
     private var currentEmojiIndexPath: IndexPath?
     private var currentColorIndexPath: IndexPath?
-
-    weak var delegate: CreateTrackerViewControllerDelegate?
-
-    var isIrregularEventView: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()

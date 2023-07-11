@@ -89,7 +89,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        counterLabel.text = ""
+        counterLabel.text?.removeAll()
         incrementButton.setImage(UIImage(), for: .normal)
     }
 
@@ -103,7 +103,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
         emojiLabel.text = model.emoji
         canvasView.backgroundColor = model.color
 
-        if isHabit == true {
+        if isHabit! {
             setCounter(days: completedDays)
 
             let image = isCompleted ? UIImage(named: "CheckMarkButton") : UIImage(named: "PlusButton")
@@ -132,7 +132,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
     }
 
     @objc private func incrementDayCounter() {
-        guard isHabit == true,
+        guard isHabit!,
             let isCompleted = isCompleted,
             let trackerID = trackerID,
             let indexPath = indexPath

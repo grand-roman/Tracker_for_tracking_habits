@@ -12,11 +12,11 @@ protocol RecordStoreDelegate: AnyObject {
 
 final class RecordStore: NSObject {
 
+    weak var delegate: RecordStoreDelegate?
+
     private let context: NSManagedObjectContext
 
     private var resultsController: NSFetchedResultsController<RecordEntity>!
-
-    weak var delegate: RecordStoreDelegate?
 
     init(context: NSManagedObjectContext) throws {
         self.context = context

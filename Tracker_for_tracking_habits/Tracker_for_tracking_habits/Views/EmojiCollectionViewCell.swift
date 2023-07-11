@@ -56,6 +56,6 @@ final class EmojiCollectionViewCell: UICollectionViewCell {
 
             emojiLabel.centerXAnchor.constraint(equalTo: canvasView.centerXAnchor),
             emojiLabel.centerYAnchor.constraint(equalTo: canvasView.centerYAnchor)
-            ])
+        ])
     }
 }
