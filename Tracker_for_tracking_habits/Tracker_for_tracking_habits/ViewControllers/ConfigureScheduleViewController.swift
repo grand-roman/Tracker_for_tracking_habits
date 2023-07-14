@@ -5,6 +5,8 @@ protocol ConfigureScheduleViewControllerDelegate: AnyObject {
 }
 
 final class ConfigureScheduleViewController: UIViewController {
+    weak var delegate: ConfigureScheduleViewControllerDelegate?
+    var currentSchedule: Set<WeekDay> = []
 
     private let switchTable: UITableView = {
         let table = UITableView(frame: .zero)
@@ -25,8 +27,6 @@ final class ConfigureScheduleViewController: UIViewController {
 
         button.setTitle("Готово", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
-        button.backgroundColor = .ypGray
-        button.isEnabled = false
 
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16
@@ -36,10 +36,7 @@ final class ConfigureScheduleViewController: UIViewController {
         return button
     }()
 
-    private var schedule: Set<WeekDay> = []
     private var switches: Array<SwitchOptions> = []
-
-    weak var delegate: ConfigureScheduleViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +49,14 @@ final class ConfigureScheduleViewController: UIViewController {
         makeViewLayout()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setDoneButtonState()
+    }
+
     @objc private func didTapDoneButton() {
-        delegate?.didConfigure(schedule: schedule)
+        delegate?.didConfigure(schedule: currentSchedule)
     }
 
     private func appendSwitches() {
@@ -87,7 +90,7 @@ final class ConfigureScheduleViewController: UIViewController {
         doneButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            switchTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            switchTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             switchTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             switchTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
@@ -98,7 +101,7 @@ final class ConfigureScheduleViewController: UIViewController {
     }
 
     private func setDoneButtonState() {
-        if schedule.isEmpty {
+        if currentSchedule.isEmpty {
             doneButton.backgroundColor = .ypGray
             doneButton.isEnabled = false
         } else {
@@ -142,9 +145,9 @@ extension ConfigureScheduleViewController: SwitchTableViewCellDelegate {
 
     func didChangeState(isOn: Bool, for weekDay: WeekDay) {
         if isOn {
-            schedule.insert(weekDay)
+            currentSchedule.insert(weekDay)
         } else {
-            schedule.remove(weekDay)
+            currentSchedule.remove(weekDay)
         }
         setDoneButtonState()
     }
