@@ -59,23 +59,23 @@ final class TrackerStore: NSObject {
     }
 
     func addTracker(model: TrackerModel, to category: String) throws {
-        try updateTracker(entity: TrackerEntity(context: context), using: model, in: category)
+        try updateTracker(entity: TrackerEntity(context: context), using: model, under: category)
         try context.save()
     }
 
-    func updateTracker(entity: TrackerEntity, using model: TrackerModel, in title: String) throws {
-        entity.id = model.id
+    func updateTracker(entity: TrackerEntity, using model: TrackerModel, under title: String) throws {
+        entity.trackerID = model.id
         entity.name = model.name
         entity.hexColor = colorSerializer.serialize(color: model.color)
         entity.emoji = model.emoji
         entity.weekDays = scheduleSerializer.serialize(schedule: model.schedule)
-        entity.date = model.date
+        entity.eventDate = model.date
         entity.category = try fetchCategory(by: title)
         entity.records = NSSet()
     }
 
     func convert(entity: TrackerEntity) throws -> TrackerModel {
-        guard let id = entity.id else {
+        guard let trackerID = entity.trackerID else {
             throw TrackerStoreError.convertIDError
         }
         guard let name = entity.name else {
@@ -88,12 +88,12 @@ final class TrackerStore: NSObject {
             throw TrackerStoreError.convertEmojiError
         }
         return TrackerModel(
-            id: id,
+            id: trackerID,
             name: name,
             color: colorSerializer.deserialize(hex: hexColor),
             emoji: emoji,
             schedule: scheduleSerializer.deserialize(days: entity.weekDays),
-            date: entity.date
+            date: entity.eventDate
         )
     }
 

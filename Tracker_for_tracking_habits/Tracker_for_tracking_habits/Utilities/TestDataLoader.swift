@@ -59,7 +59,7 @@ final class TestDataLoader {
 
         let trackerEntities = trackerModels.map { model in
             let entity = TrackerEntity(context: context)
-            entity.id = model.id
+            entity.trackerID = model.id
             entity.name = model.name
             entity.hexColor = colorSerializer.serialize(color: model.color)
             entity.emoji = model.emoji

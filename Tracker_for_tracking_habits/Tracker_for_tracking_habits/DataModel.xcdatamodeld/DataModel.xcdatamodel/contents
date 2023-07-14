@@ -10,11 +10,11 @@
         <relationship name="tracker" maxCount="1" deletionRule="Nullify" destinationEntity="TrackerEntity" inverseName="records" inverseEntity="TrackerEntity"/>
     </entity>
     <entity name="TrackerEntity" representedClassName="TrackerEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="emoji" attributeType="String"/>
+        <attribute name="eventDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="hexColor" attributeType="String"/>
-        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="trackerID" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="weekDays" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="category" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="trackers" inverseEntity="CategoryEntity"/>
         <relationship name="records" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="tracker" inverseEntity="RecordEntity"/>

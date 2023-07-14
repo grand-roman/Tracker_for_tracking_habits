@@ -85,7 +85,7 @@ final class RecordStore: NSObject {
 
     private func fetchTracker(by id: UUID) throws -> TrackerEntity {
         let request = NSFetchRequest<TrackerEntity>(entityName: "TrackerEntity")
-        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(TrackerEntity.trackerID), id as CVarArg)
         return try context.fetch(request)[0]
     }
 

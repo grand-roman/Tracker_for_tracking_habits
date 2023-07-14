@@ -5,6 +5,9 @@ protocol SelectCategoryViewControllerDelegate: AnyObject {
 }
 
 final class SelectCategoryViewController: UIViewController {
+    
+    weak var delegate: SelectCategoryViewControllerDelegate?
+    var currentCategoryTitle: String?
 
     private let checkTable: UITableView = {
         let table = UITableView(frame: .zero)
@@ -44,10 +47,13 @@ final class SelectCategoryViewController: UIViewController {
         return button
     }()
 
-    private let viewModel = CategoryListViewModel()
-    private var currentCategoryIndexPath: IndexPath?
+    private lazy var tableHeightConstraint: NSLayoutConstraint = {
+        let constraint = checkTable.heightAnchor.constraint(equalToConstant: 0)
+        constraint.isActive = true
+        return constraint
+    }()
 
-    weak var delegate: SelectCategoryViewControllerDelegate?
+    private let viewModel = CategoryListViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,8 +73,20 @@ final class SelectCategoryViewController: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        guard let currentTitle = currentCategoryTitle,
+            let index = viewModel.categoryList.firstIndex(where: { $0.title == currentTitle })
+            else {
+            return
+        }
+        viewModel.selectCategory(at: index)
+    }
+
     @objc private func didTapAddButton() {
         let createController = CreateCategoryViewController()
+        createController.delegate = self
         present(UINavigationController(rootViewController: createController), animated: true)
     }
 
@@ -114,8 +132,7 @@ final class SelectCategoryViewController: UIViewController {
         } else {
             placeholderView.isHidden = true
 
-            let tableHeight = CGFloat(viewModel.categoryList.count * 75)
-            checkTable.heightAnchor.constraint(equalToConstant: tableHeight).isActive = true
+            tableHeightConstraint.constant = CGFloat(viewModel.categoryList.count * 75)
             checkTable.reloadData()
         }
     }
@@ -146,13 +163,19 @@ extension SelectCategoryViewController: UITableViewDataSource {
 extension SelectCategoryViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let currentIndexPath = currentCategoryIndexPath {
-            tableView.deselectRow(at: currentIndexPath, animated: true)
-            viewModel.deselectCategory(at: currentIndexPath.row)
-        }
         viewModel.selectCategory(at: indexPath.row)
-        currentCategoryIndexPath = indexPath
-
         delegate?.didSelect(category: viewModel.categoryList[indexPath.row].title)
+    }
+}
+
+extension SelectCategoryViewController: CreateCategoryViewControllerDelegate {
+
+    func didCreate(category title: String) {
+        guard let index = viewModel.categoryList.firstIndex(where: { $0.title == title }) else {
+            return
+        }
+        viewModel.selectCategory(at: index)
+        reloadTableData()
+        dismiss(animated: true)
     }
 }
