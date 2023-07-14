@@ -61,13 +61,13 @@ final class ConfigureScheduleViewController: UIViewController {
 
     private func appendSwitches() {
         switches.append(contentsOf: [
-            SwitchOptions(weekDay: .monday, name: "Понедельник", isOn: schedule.contains(.monday)),
-            SwitchOptions(weekDay: .tuesday, name: "Вторник", isOn: schedule.contains(.tuesday)),
-            SwitchOptions(weekDay: .wednesday, name: "Среда", isOn: schedule.contains(.wednesday)),
-            SwitchOptions(weekDay: .thursday, name: "Четверг", isOn: schedule.contains(.thursday)),
-            SwitchOptions(weekDay: .friday, name: "Пятница", isOn: schedule.contains(.friday)),
-            SwitchOptions(weekDay: .saturday, name: "Суббота", isOn: schedule.contains(.saturday)),
-            SwitchOptions(weekDay: .sunday, name: "Воскресенье", isOn: schedule.contains(.sunday))
+            SwitchOptions(weekDay: .monday, name: "Понедельник", isOn: currentSchedule.contains(.monday)),
+            SwitchOptions(weekDay: .tuesday, name: "Вторник", isOn: currentSchedule.contains(.tuesday)),
+            SwitchOptions(weekDay: .wednesday, name: "Среда", isOn: currentSchedule.contains(.wednesday)),
+            SwitchOptions(weekDay: .thursday, name: "Четверг", isOn: currentSchedule.contains(.thursday)),
+            SwitchOptions(weekDay: .friday, name: "Пятница", isOn: currentSchedule.contains(.friday)),
+            SwitchOptions(weekDay: .saturday, name: "Суббота", isOn: currentSchedule.contains(.saturday)),
+            SwitchOptions(weekDay: .sunday, name: "Воскресенье", isOn: currentSchedule.contains(.sunday))
             ])
     }
 
