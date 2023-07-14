@@ -8,8 +8,7 @@ protocol CreateTrackerViewControllerDelegate: AnyObject {
 final class CreateTrackerViewController: UIViewController {
 
     weak var delegate: CreateTrackerViewControllerDelegate?
-
-    var isIrregularEventView: Bool = false
+    var isHabitView: Bool = true
 
     private lazy var nameField: CustomTextField = {
         let field = CustomTextField()
@@ -132,7 +131,7 @@ final class CreateTrackerViewController: UIViewController {
         }
         if trackerName.isEmpty
             || selectedCategoryTitle == nil
-            || configuredSchedule.isEmpty && !isIrregularEventView
+            || configuredSchedule.isEmpty && isHabitView
             || currentEmojiIndexPath == nil
             || currentColorIndexPath == nil
         {
@@ -263,9 +262,7 @@ final class CreateTrackerViewController: UIViewController {
                 }
             )
         )
-        if isIrregularEventView {
-            navigationController?.navigationBar.topItem?.title = "Новое нерегулярное событие"
-        } else {
+        if isHabitView {
             navigationController?.navigationBar.topItem?.title = "Новая привычка"
             settings.append(
                 SettingOptions(
@@ -278,6 +275,8 @@ final class CreateTrackerViewController: UIViewController {
                     }
                 )
             )
+        } else {
+            navigationController?.navigationBar.topItem?.title = "Новое нерегулярное событие"
         }
         settingTable.heightAnchor.constraint(equalToConstant: CGFloat(settings.count * 75)).isActive = true
         settingTable.reloadData()
@@ -286,13 +285,25 @@ final class CreateTrackerViewController: UIViewController {
     private func didTapSettingCategory() {
         let categoryController = SelectCategoryViewController()
         categoryController.delegate = self
+        categoryController.currentCategoryTitle = selectedCategoryTitle
         present(UINavigationController(rootViewController: categoryController), animated: true)
     }
 
     private func didTapSettingSchedule() {
         let scheduleController = ConfigureScheduleViewController()
         scheduleController.delegate = self
+        scheduleController.currentSchedule = configuredSchedule
         present(UINavigationController(rootViewController: scheduleController), animated: true)
+    }
+
+    private func configureSettingCell(caption text: String, at index: Int) {
+        guard let settingCell = settingTable
+            .cellForRow(at: IndexPath(row: index, section: 0)) as? SettingTableViewCell
+            else {
+            preconditionFailure("Failed to cast UITableViewCell as SettingTableViewCell")
+        }
+        settingCell.configure(caption: text)
+        settingTable.reloadData()
     }
 }
 
@@ -442,8 +453,9 @@ extension CreateTrackerViewController: UICollectionViewDelegate {
 extension CreateTrackerViewController: SelectCategoryViewControllerDelegate {
 
     func didSelect(category title: String) {
-        selectedCategoryTitle = title
+        configureSettingCell(caption: title, at: 0)
         setCreateButtonState()
+        selectedCategoryTitle = title
         dismiss(animated: true)
     }
 }
@@ -451,8 +463,37 @@ extension CreateTrackerViewController: SelectCategoryViewControllerDelegate {
 extension CreateTrackerViewController: ConfigureScheduleViewControllerDelegate {
 
     func didConfigure(schedule: Set<WeekDay>) {
-        configuredSchedule = schedule
+        configureSettingCell(caption: makeCaption(from: schedule), at: 1)
         setCreateButtonState()
+        configuredSchedule = schedule
         dismiss(animated: true)
+    }
+
+    private func makeCaption(from schedule: Set<WeekDay>) -> String {
+        if schedule.count == 7 {
+            return "Каждый день"
+        }
+        let weekDays = schedule.sorted { $0.rawValue < $1.rawValue }
+        var names: Array<String> = []
+
+        for day in weekDays {
+            switch day {
+            case .monday:
+                names.append("Пн")
+            case .tuesday:
+                names.append("Вт")
+            case .wednesday:
+                names.append("Ср")
+            case .thursday:
+                names.append("Чт")
+            case .friday:
+                names.append("Пт")
+            case .saturday:
+                names.append("Сб")
+            case .sunday:
+                names.append("Вс")
+            }
+        }
+        return names.joined(separator: ", ")
     }
 }
