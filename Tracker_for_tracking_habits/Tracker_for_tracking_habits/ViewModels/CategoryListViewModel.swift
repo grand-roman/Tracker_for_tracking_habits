@@ -13,11 +13,21 @@ final class CategoryListViewModel {
     }
 
     func selectCategory(at index: Int) {
-        categoryList[index].isChecked = true
+        let category = categoryList[index]
+
+        categoryList[index] = CategoryViewModel(
+            title: category.title,
+            isChecked: true
+        )
     }
 
     func deselectCategory(at index: Int) {
-        categoryList[index].isChecked = false
+        let category = categoryList[index]
+
+        categoryList[index] = CategoryViewModel(
+            title: category.title,
+            isChecked: false
+        )
     }
 
     private func fetchCategories() -> Array<CategoryViewModel> {

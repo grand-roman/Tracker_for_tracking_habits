@@ -8,6 +8,7 @@ protocol TrackerCollectionViewCellDelegate: AnyObject {
 final class TrackerCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "TrackerCollectionViewCell"
+    weak var delegate: TrackerCollectionViewCellDelegate?
 
     private let canvasView: UIView = {
         let view = UIView()
@@ -73,8 +74,6 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
     private var indexPath: IndexPath?
     private var isCompleted: Bool?
     private var isHabit: Bool?
-
-    weak var delegate: TrackerCollectionViewCellDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)

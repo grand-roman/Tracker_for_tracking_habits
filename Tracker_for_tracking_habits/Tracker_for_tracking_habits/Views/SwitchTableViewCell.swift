@@ -7,6 +7,7 @@ protocol SwitchTableViewCellDelegate: AnyObject {
 final class SwitchTableViewCell: UITableViewCell {
 
     static let identifier = "SwitchTableViewCell"
+    weak var delegate: SwitchTableViewCellDelegate?
 
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -27,8 +28,6 @@ final class SwitchTableViewCell: UITableViewCell {
     }()
 
     private var weekDay: WeekDay?
-
-    weak var delegate: SwitchTableViewCellDelegate?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

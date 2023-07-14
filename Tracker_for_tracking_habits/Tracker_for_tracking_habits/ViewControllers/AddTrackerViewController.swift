@@ -6,6 +6,8 @@ protocol AddTrackerViewControllerDelegate: AnyObject {
 
 final class AddTrackerViewController: UIViewController {
 
+    weak var delegate: AddTrackerViewControllerDelegate?
+
     private lazy var habitButton: UIButton = {
         let button = UIButton(type: .custom)
 
@@ -36,8 +38,6 @@ final class AddTrackerViewController: UIViewController {
         return button
     }()
 
-    weak var delegate: AddTrackerViewControllerDelegate?
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,14 +48,14 @@ final class AddTrackerViewController: UIViewController {
     @objc private func didTapHabitButton() {
         let habitController = CreateTrackerViewController()
         habitController.delegate = self
-        habitController.isIrregularEventView = false
+        habitController.isHabitView = true
         present(UINavigationController(rootViewController: habitController), animated: true)
     }
 
     @objc private func didTapEventButton() {
         let eventController = CreateTrackerViewController()
         eventController.delegate = self
-        eventController.isIrregularEventView = true
+        eventController.isHabitView = false
         present(UINavigationController(rootViewController: eventController), animated: true)
     }
 
