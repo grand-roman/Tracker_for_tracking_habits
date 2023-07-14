@@ -20,6 +20,7 @@
 		A02FA5312A50929B002398BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02FA5302A50929B002398BE /* SceneDelegate.swift */; };
 		A02FA5382A50929C002398BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A02FA5372A50929C002398BE /* Assets.xcassets */; };
 		A02FA53B2A50929C002398BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A02FA5392A50929C002398BE /* LaunchScreen.storyboard */; };
+		A097021E2A610241002789C3 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A097021C2A610241002789C3 /* DataModel.xcdatamodeld */; };
 		A0A9E8392A5B014400E54622 /* ScheduleSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A9E8382A5B014400E54622 /* ScheduleSerializer.swift */; };
 		A0A9E83B2A5B014900E54622 /* TestDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A9E83A2A5B014900E54622 /* TestDataLoader.swift */; };
 		A0A9E83D2A5B015200E54622 /* UIColorSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A9E83C2A5B015200E54622 /* UIColorSerializer.swift */; };
@@ -68,6 +69,7 @@
 		A02FA5372A50929C002398BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A02FA53A2A50929C002398BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A02FA53C2A50929C002398BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A097021D2A610241002789C3 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		A0A9E8382A5B014400E54622 /* ScheduleSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSerializer.swift; sourceTree = "<group>"; };
 		A0A9E83A2A5B014900E54622 /* TestDataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDataLoader.swift; sourceTree = "<group>"; };
 		A0A9E83C2A5B015200E54622 /* UIColorSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorSerializer.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				A02FA5392A50929C002398BE /* LaunchScreen.storyboard */,
 				A0A9E8522A5B065700E54622 /* Main.storyboard */,
 				A02FA53C2A50929C002398BE /* Info.plist */,
+				A097021C2A610241002789C3 /* DataModel.xcdatamodeld */,
 			);
 			path = Tracker_for_tracking_habits;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				A0E1819E2A527D5F0012330B /* CategoryModel.swift in Sources */,
 				A00E98212A5D203300883A0F /* OnboardingPageView.swift in Sources */,
 				A0E181A62A527D7C0012330B /* CollectionWidthParameters.swift in Sources */,
+				A097021E2A610241002789C3 /* DataModel.xcdatamodeld in Sources */,
 				A0E181982A527D4C0012330B /* UIColorExtension.swift in Sources */,
 				A00E981D2A5D1F4D00883A0F /* SelectCategoryViewController.swift in Sources */,
 				A0E181B32A527D840012330B /* SettingTableViewCell.swift in Sources */,
@@ -566,6 +570,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A097021C2A610241002789C3 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A097021D2A610241002789C3 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = A097021D2A610241002789C3 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A02FA5232A50929B002398BE /* Project object */;
 }
