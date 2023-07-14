@@ -2,12 +2,13 @@ import Foundation
 
 final class CategoryListViewModel {
 
-    private let categoryStore = CategoryStore()
+    private let categoryStore :CategoryStore
 
     @Observable
     private(set) var categoryList: Array<CategoryViewModel> = []
 
     init() {
+        categoryStore = CategoryStore()
         categoryStore.delegate = self
         categoryList = fetchCategories()
     }

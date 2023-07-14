@@ -238,7 +238,11 @@ extension TrackersViewController: AddTrackerViewControllerDelegate {
         if model.schedule.isEmpty {
             model.date = selectedDate
         }
-        try! trackerStore.addTracker(model: model, to: category)
+        do {
+            try trackerStore.addTracker(model: model, to: category)
+        } catch let error {
+            print(error.localizedDescription)
+        }
         didChangeSelectedDate()
         dismiss(animated: true)
     }

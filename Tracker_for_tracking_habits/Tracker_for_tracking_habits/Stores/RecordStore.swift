@@ -35,7 +35,11 @@ final class RecordStore: NSObject {
         controller.delegate = self
 
         resultsController = controller
-        try resultsController.performFetch()
+        do {
+            try resultsController.performFetch()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 
     convenience override init() {
@@ -55,8 +59,12 @@ final class RecordStore: NSObject {
     }
 
     func addRecord(model: RecordModel) throws {
-        try updateRecord(entity: RecordEntity(context: context), using: model)
-        try context.save()
+        do {
+            try updateRecord(entity: RecordEntity(context: context), using: model)
+            try context.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 
     func updateRecord(entity: RecordEntity, using model: RecordModel) throws {
@@ -67,7 +75,7 @@ final class RecordStore: NSObject {
 
     func deleteRecord(model: RecordModel) throws {
         context.delete(try fetchRecord(using: model))
-        try context.save()
+        try? context.save()
     }
 
     private func convert(entity: RecordEntity) throws -> RecordModel {

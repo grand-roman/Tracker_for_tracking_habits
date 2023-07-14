@@ -299,8 +299,8 @@ final class CreateTrackerViewController: UIViewController {
     private func configureSettingCell(caption text: String, at index: Int) {
         guard let settingCell = settingTable
             .cellForRow(at: IndexPath(row: index, section: 0)) as? SettingTableViewCell
-            else {
-            preconditionFailure("Failed to cast UITableViewCell as SettingTableViewCell")
+        else {
+            return
         }
         settingCell.configure(caption: text)
         settingTable.reloadData()
