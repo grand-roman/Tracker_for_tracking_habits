@@ -283,9 +283,10 @@ final class CreateTrackerViewController: UIViewController {
     }
 
     private func didTapSettingCategory() {
-        let categoryController = SelectCategoryViewController()
+        let viewModel = CategoryListViewModel()
+        viewModel.currentCategoryTitle = selectedCategoryTitle
+        let categoryController = SelectCategoryViewController(as: viewModel)
         categoryController.delegate = self
-        categoryController.currentCategoryTitle = selectedCategoryTitle
         present(UINavigationController(rootViewController: categoryController), animated: true)
     }
 

@@ -8,7 +8,16 @@ final class SelectCategoryViewController: UIViewController {
 
     weak var delegate: SelectCategoryViewControllerDelegate?
     var currentCategoryTitle: String?
-    private let viewModel = CategoryListViewModel()
+    private let viewModel: CategoryListViewModel
+
+    init(as viewModel: CategoryListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     private let checkTable: UITableView = {
         let table = UITableView(frame: .zero)
