@@ -33,6 +33,7 @@ final class OnboardingPageViewController: UIPageViewController {
         control.pageIndicatorTintColor = .ypGray
         control.currentPageIndicatorTintColor = .ypBlackDay
 
+        control.addTarget(self, action: #selector(didTapPageControl), for: .valueChanged)
         return control
     }()
 
@@ -63,6 +64,11 @@ final class OnboardingPageViewController: UIPageViewController {
         setViewControllers([firstController], direction: .forward, animated: true)
 
         makeViewLayout()
+    }
+
+    @objc private func didTapPageControl() {
+        let currentController = pageControllers[pageControl.currentPage]
+        setViewControllers([currentController], direction: .forward, animated: true)
     }
 
     @objc private func didTapNextButton() {
