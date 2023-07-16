@@ -5,9 +5,10 @@ protocol SelectCategoryViewControllerDelegate: AnyObject {
 }
 
 final class SelectCategoryViewController: UIViewController {
-    
+
     weak var delegate: SelectCategoryViewControllerDelegate?
     var currentCategoryTitle: String?
+    private let viewModel = CategoryListViewModel()
 
     private let checkTable: UITableView = {
         let table = UITableView(frame: .zero)
@@ -53,8 +54,6 @@ final class SelectCategoryViewController: UIViewController {
         return constraint
     }()
 
-    private let viewModel = CategoryListViewModel()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,17 +70,6 @@ final class SelectCategoryViewController: UIViewController {
             }
             self.reloadTableData()
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        guard let currentTitle = currentCategoryTitle,
-            let index = viewModel.categoryList.firstIndex(where: { $0.title == currentTitle })
-            else {
-            return
-        }
-        viewModel.selectCategory(at: index)
     }
 
     @objc private func didTapAddButton() {
@@ -127,14 +115,9 @@ final class SelectCategoryViewController: UIViewController {
     }
 
     private func reloadTableData() {
-        if viewModel.categoryList.isEmpty {
-            placeholderView.isHidden = false
-        } else {
-            placeholderView.isHidden = true
-
-            tableHeightConstraint.constant = CGFloat(viewModel.categoryList.count * 75)
-            checkTable.reloadData()
-        }
+        placeholderView.isHidden = viewModel.isPlaceholderHidden()
+        tableHeightConstraint.constant = CGFloat(viewModel.categoryList.count * 75)
+        checkTable.reloadData()
     }
 }
 
@@ -152,7 +135,7 @@ extension SelectCategoryViewController: UITableViewDataSource {
         }
         checkCell.viewModel = viewModel.categoryList[indexPath.row]
 
-        if indexPath.row == viewModel.categoryList.count - 1 { // hide separator for last cell
+        if viewModel.shouldHideSeparator(at: indexPath) {
             let centerX = checkCell.bounds.width / 2
             checkCell.separatorInset = UIEdgeInsets(top: 0, left: centerX, bottom: 0, right: centerX)
         }
@@ -171,7 +154,7 @@ extension SelectCategoryViewController: UITableViewDelegate {
 extension SelectCategoryViewController: CreateCategoryViewControllerDelegate {
 
     func didCreate(category title: String) {
-        guard let index = viewModel.categoryList.firstIndex(where: { $0.title == title }) else {
+        guard let index = viewModel.getIndex(at: title) else {
             return
         }
         viewModel.selectCategory(at: index)
