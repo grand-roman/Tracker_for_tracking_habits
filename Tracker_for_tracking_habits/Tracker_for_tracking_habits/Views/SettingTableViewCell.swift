@@ -13,6 +13,15 @@ final class SettingTableViewCell: UITableViewCell {
         return label
     }()
 
+    private let captionLabel: UILabel = {
+        let label = UILabel()
+
+        label.textColor = .ypGray
+        label.font = .systemFont(ofSize: 17, weight: .regular)
+
+        return label
+    }()
+
     private let accessoryImage: UIImageView = {
         return UIImageView(image: UIImage(named: "ChevronRightSymbol"))
     }()
@@ -31,22 +40,39 @@ final class SettingTableViewCell: UITableViewCell {
         nameLabel.text = options.name
     }
 
+    func configure(caption: String) {
+        captionLabel.text = caption
+    }
+
     private func makeViewLayout() {
         contentView.backgroundColor = .ypBackgroundDay
         contentView.heightAnchor.constraint(equalToConstant: 75).isActive = true
 
-        contentView.addSubview(nameLabel)
+        let labelStack = makeLabelStack()
+
+        contentView.addSubview(labelStack)
         contentView.addSubview(accessoryImage)
 
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        labelStack.translatesAutoresizingMaskIntoConstraints = false
         accessoryImage.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            labelStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            labelStack.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 
             accessoryImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
             accessoryImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
             ])
+    }
+
+    private func makeLabelStack() -> UIStackView {
+        let stack = UIStackView()
+
+        stack.axis = .vertical
+
+        stack.addArrangedSubview(nameLabel)
+        stack.addArrangedSubview(captionLabel)
+
+        return stack
     }
 }

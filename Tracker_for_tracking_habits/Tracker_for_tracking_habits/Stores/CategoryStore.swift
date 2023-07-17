@@ -13,12 +13,12 @@ protocol CategoryStoreDelegate: AnyObject {
 
 final class CategoryStore: NSObject {
 
+    weak var delegate: CategoryStoreDelegate?
+
     private let trackerStore = TrackerStore()
     private let context: NSManagedObjectContext
 
     private var resultsController: NSFetchedResultsController<CategoryEntity>!
-
-    weak var delegate: CategoryStoreDelegate?
 
     init(context: NSManagedObjectContext) throws {
         self.context = context
@@ -54,6 +54,16 @@ final class CategoryStore: NSObject {
             return []
         }
         return models
+    }
+
+    func addCategory(model: CategoryModel) throws {
+        try updateCategory(entity: CategoryEntity(context: context), using: model)
+        try context.save()
+    }
+
+    func updateCategory(entity: CategoryEntity, using model: CategoryModel) throws {
+        entity.title = model.title
+        entity.trackers = NSSet()
     }
 
     private func convert(entity: CategoryEntity) throws -> CategoryModel {

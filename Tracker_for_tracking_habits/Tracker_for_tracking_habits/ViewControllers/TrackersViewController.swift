@@ -27,7 +27,7 @@ final class TrackersViewController: UIViewController {
 
         field.placeholder = "Поиск"
         field.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        field.addTarget(self, action: #selector(didChangeSearchText), for: .editingChanged)
+        field.addTarget(self, action: #selector(reloadVisibleCategories), for: .editingChanged)
 
         return field
     }()
@@ -77,7 +77,7 @@ final class TrackersViewController: UIViewController {
         completedRecords = recordStore.fetchedRecords
         visibleCategories.append(contentsOf: categories)
 
-        didChangeSelectedDate()
+        reloadVisibleCategories()
     }
 
     private func isMatchRecord(model: RecordModel, with trackerID: UUID) -> Bool {
@@ -233,13 +233,17 @@ extension TrackersViewController: TrackerCollectionViewCellDelegate {
 
 extension TrackersViewController: AddTrackerViewControllerDelegate {
 
-    func didAddNewTracker(model: TrackerModel) {
+    func didAddNewTracker(model: TrackerModel, to category: String) {
         var model = model
         if model.schedule.isEmpty {
             model.date = selectedDate
         }
-        try! trackerStore.addTracker(model: model, to: categories[0].title)
-        didChangeSelectedDate()
+        do {
+            try trackerStore.addTracker(model: model, to: category)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        reloadVisibleCategories()
         dismiss(animated: true)
     }
 }
@@ -263,44 +267,23 @@ private extension TrackersViewController {
     @objc func didChangeSelectedDate() {
         presentedViewController?.dismiss(animated: false)
         selectedDate = datePicker.date
-        didChangeSearchText()
+        reloadVisibleCategories()
     }
 
-    @objc func didChangeSearchText() {
-        updateVisibleTrackers()
-
-        guard let searchText = searchField.text,
-            !searchText.isEmpty
-            else {
-            return
-        }
-        var searchedCategories: Array<CategoryModel> = []
-
-        for category in visibleCategories {
-            var searchedTrackers: Array<TrackerModel> = []
-
-            for tracker in category.trackers {
-                if tracker.name.localizedCaseInsensitiveContains(searchText) {
-                    searchedTrackers.append(tracker)
-                }
-            }
-            if !searchedTrackers.isEmpty {
-                searchedCategories.append(CategoryModel(title: category.title, trackers: searchedTrackers))
-            }
-        }
-        visibleCategories = searchedCategories
-        showAppropriatePlaceholder()
-        trackerCollection.reloadData()
-    }
-
-    func updateVisibleTrackers() {
+    @objc func reloadVisibleCategories() {
         visibleCategories = []
+        let searchText = searchField.text ?? ""
 
         for category in categories {
             var visibleTrackers: Array<TrackerModel> = []
 
             for tracker in category.trackers {
-                if isVisibleHabit(model: tracker) || isVisibleEvent(model: tracker) {
+                if (
+                    isVisibleHabit(model: tracker) || isVisibleEvent(model: tracker)
+                    ) && (
+                        searchText.isEmpty || tracker.name.localizedCaseInsensitiveContains(searchText)
+                    )
+                {
                     visibleTrackers.append(tracker)
                 }
             }
@@ -341,7 +324,7 @@ private extension TrackersViewController {
         if categories.isEmpty {
             placeholderView.isHidden = false
             placeholderView.configure(
-                image: UIImage(named: "TrackersPlaceholder"),
+                image: UIImage(named: "CategoriesPlaceholder"),
                 caption: "Что будем отслеживать?"
             )
         } else if visibleCategories.isEmpty {

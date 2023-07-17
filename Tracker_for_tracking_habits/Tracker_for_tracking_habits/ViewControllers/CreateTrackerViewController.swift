@@ -1,15 +1,14 @@
 import UIKit
 
 protocol CreateTrackerViewControllerDelegate: AnyObject {
-    func didCreateNewTracker(model: TrackerModel)
+    func didCreateNewTracker(model: TrackerModel, in category: String)
     func didCancelNewTracker()
 }
 
 final class CreateTrackerViewController: UIViewController {
 
     weak var delegate: CreateTrackerViewControllerDelegate?
-
-    var isIrregularEventView: Bool = false
+    var isHabitView: Bool = true
 
     private lazy var nameField: CustomTextField = {
         let field = CustomTextField()
@@ -105,6 +104,7 @@ final class CreateTrackerViewController: UIViewController {
     ]
 
     private var settings: Array<SettingOptions> = []
+    private var selectedCategoryTitle: String?
     private var configuredSchedule: Set<WeekDay> = []
 
     private var currentEmojiIndexPath: IndexPath?
@@ -130,7 +130,8 @@ final class CreateTrackerViewController: UIViewController {
             return
         }
         if trackerName.isEmpty
-            || configuredSchedule.isEmpty && !isIrregularEventView
+            || selectedCategoryTitle == nil
+            || configuredSchedule.isEmpty && isHabitView
             || currentEmojiIndexPath == nil
             || currentColorIndexPath == nil
         {
@@ -147,7 +148,9 @@ final class CreateTrackerViewController: UIViewController {
     }
 
     @objc private func didTapCreateButton() {
-        guard let trackerName = nameField.text else {
+        guard let trackerName = nameField.text,
+            let categoryTitle = selectedCategoryTitle
+        else {
             return
         }
         let tracker = TrackerModel(
@@ -157,7 +160,7 @@ final class CreateTrackerViewController: UIViewController {
             emoji: emojis[currentEmojiIndexPath?.item ?? 0],
             schedule: configuredSchedule
         )
-        delegate?.didCreateNewTracker(model: tracker)
+        delegate?.didCreateNewTracker(model: tracker, in: categoryTitle)
     }
 
     private func setupNavigationBar() {
@@ -259,9 +262,7 @@ final class CreateTrackerViewController: UIViewController {
                 }
             )
         )
-        if isIrregularEventView {
-            navigationController?.navigationBar.topItem?.title = "Новое нерегулярное событие"
-        } else {
+        if isHabitView {
             navigationController?.navigationBar.topItem?.title = "Новая привычка"
             settings.append(
                 SettingOptions(
@@ -274,17 +275,36 @@ final class CreateTrackerViewController: UIViewController {
                     }
                 )
             )
+        } else {
+            navigationController?.navigationBar.topItem?.title = "Новое нерегулярное событие"
         }
         settingTable.heightAnchor.constraint(equalToConstant: CGFloat(settings.count * 75)).isActive = true
         settingTable.reloadData()
     }
 
-    private func didTapSettingCategory() { }
+    private func didTapSettingCategory() {
+        let viewModel = CategoryListViewModel()
+        viewModel.currentCategoryTitle = selectedCategoryTitle
+        let categoryController = SelectCategoryViewController(as: viewModel)
+        categoryController.delegate = self
+        present(UINavigationController(rootViewController: categoryController), animated: true)
+    }
 
     private func didTapSettingSchedule() {
         let scheduleController = ConfigureScheduleViewController()
         scheduleController.delegate = self
+        scheduleController.currentSchedule = configuredSchedule
         present(UINavigationController(rootViewController: scheduleController), animated: true)
+    }
+
+    private func configureSettingCell(caption text: String, at index: Int) {
+        guard let settingCell = settingTable
+            .cellForRow(at: IndexPath(row: index, section: 0)) as? SettingTableViewCell
+        else {
+            return
+        }
+        settingCell.configure(caption: text)
+        settingTable.reloadData()
     }
 }
 
@@ -431,11 +451,50 @@ extension CreateTrackerViewController: UICollectionViewDelegate {
     }
 }
 
+extension CreateTrackerViewController: SelectCategoryViewControllerDelegate {
+
+    func didSelect(category title: String) {
+        configureSettingCell(caption: title, at: 0)
+        setCreateButtonState()
+        selectedCategoryTitle = title
+        dismiss(animated: true)
+    }
+}
+
 extension CreateTrackerViewController: ConfigureScheduleViewControllerDelegate {
 
     func didConfigure(schedule: Set<WeekDay>) {
-        configuredSchedule = schedule
+        configureSettingCell(caption: makeCaption(from: schedule), at: 1)
         setCreateButtonState()
+        configuredSchedule = schedule
         dismiss(animated: true)
+    }
+
+    private func makeCaption(from schedule: Set<WeekDay>) -> String {
+        if schedule.count == 7 {
+            return "Каждый день"
+        }
+        let weekDays = schedule.sorted { $0.rawValue < $1.rawValue }
+        var names: Array<String> = []
+
+        for day in weekDays {
+            switch day {
+            case .monday:
+                names.append("Пн")
+            case .tuesday:
+                names.append("Вт")
+            case .wednesday:
+                names.append("Ср")
+            case .thursday:
+                names.append("Чт")
+            case .friday:
+                names.append("Пт")
+            case .saturday:
+                names.append("Сб")
+            case .sunday:
+                names.append("Вс")
+            }
+        }
+        return names.joined(separator: ", ")
     }
 }
