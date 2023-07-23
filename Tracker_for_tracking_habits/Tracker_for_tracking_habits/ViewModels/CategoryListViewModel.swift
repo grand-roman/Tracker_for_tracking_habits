@@ -49,10 +49,6 @@ final class CategoryListViewModel {
         return !self.categoryList.isEmpty
     }
 
-    func shouldHideSeparator(at indexPath: IndexPath) -> Bool {
-        return indexPath.row == self.categoryList.count - 1
-    }
-
     private func fetchCategories() -> Array<CategoryViewModel> {
         return categoryStore.fetchedCategories.map { model in
             CategoryViewModel(

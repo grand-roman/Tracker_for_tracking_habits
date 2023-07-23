@@ -144,10 +144,6 @@ extension SelectCategoryViewController: UITableViewDataSource {
         }
         checkCell.viewModel = viewModel.categoryList[indexPath.row]
 
-        if viewModel.shouldHideSeparator(at: indexPath) {
-            let centerX = checkCell.bounds.width / 2
-            checkCell.separatorInset = UIEdgeInsets(top: 0, left: centerX, bottom: 0, right: centerX)
-        }
         return checkCell
     }
 }

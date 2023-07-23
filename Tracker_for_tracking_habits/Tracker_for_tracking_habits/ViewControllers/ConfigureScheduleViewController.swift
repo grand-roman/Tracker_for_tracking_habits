@@ -13,7 +13,9 @@ final class ConfigureScheduleViewController: UIViewController {
 
         table.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.identifier)
         table.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        table.tableHeaderView = UIView() // remove separator above first cell
         table.isScrollEnabled = false
+        table.allowsSelection = false
 
         table.layer.masksToBounds = true
         table.layer.cornerRadius = 16
@@ -42,7 +44,6 @@ final class ConfigureScheduleViewController: UIViewController {
         super.viewDidLoad()
 
         switchTable.dataSource = self
-        switchTable.delegate = self
 
         appendSwitches()
         setupNavigationBar()
@@ -131,13 +132,6 @@ extension ConfigureScheduleViewController: UITableViewDataSource {
             switchCell.separatorInset = UIEdgeInsets(top: 0, left: centerX, bottom: 0, right: centerX)
         }
         return switchCell
-    }
-}
-
-extension ConfigureScheduleViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
