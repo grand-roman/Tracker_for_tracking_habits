@@ -13,7 +13,7 @@ final class CreateTrackerViewController: UIViewController {
     private lazy var nameField: CustomTextField = {
         let field = CustomTextField()
 
-        field.placeholder = "Введите название трекера"
+        field.placeholder = NSLocalizedString("trackerNameField.placeholder", comment: "")
         field.font = .systemFont(ofSize: 17, weight: .regular)
         field.backgroundColor = .ypBackgroundDay
 
@@ -61,7 +61,7 @@ final class CreateTrackerViewController: UIViewController {
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .custom)
 
-        button.setTitle("Отменить", for: .normal)
+        button.setTitle(NSLocalizedString("cancelButton.title", comment: ""), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.setTitleColor(.ypRed, for: .normal)
 
@@ -77,7 +77,7 @@ final class CreateTrackerViewController: UIViewController {
     private lazy var createButton: UIButton = {
         let button = UIButton(type: .custom)
 
-        button.setTitle("Создать", for: .normal)
+        button.setTitle(NSLocalizedString("createButton.title", comment: ""), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .ypGray
         button.isEnabled = false
@@ -169,7 +169,7 @@ final class CreateTrackerViewController: UIViewController {
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes
-        navigationController?.navigationBar.topItem?.title = "Новая привычка"
+        navigationController?.navigationBar.topItem?.title = NSLocalizedString("createHabit.title", comment: "")
     }
 
     private func makeViewLayout() {
@@ -253,7 +253,7 @@ final class CreateTrackerViewController: UIViewController {
     private func customizeView() {
         settings.append(
             SettingOptions(
-                name: "Категория",
+                name: NSLocalizedString("category.title", comment: ""),
                 handler: { [weak self] in
                     guard let self = self else {
                         return
@@ -263,10 +263,9 @@ final class CreateTrackerViewController: UIViewController {
             )
         )
         if isHabitView {
-            navigationController?.navigationBar.topItem?.title = "Новая привычка"
             settings.append(
                 SettingOptions(
-                    name: "Расписание",
+                    name: NSLocalizedString("schedule.title", comment: ""),
                     handler: { [weak self] in
                         guard let self = self else {
                             return
@@ -276,7 +275,7 @@ final class CreateTrackerViewController: UIViewController {
                 )
             )
         } else {
-            navigationController?.navigationBar.topItem?.title = "Новое нерегулярное событие"
+            navigationController?.navigationBar.topItem?.title = NSLocalizedString("createIrregularEvent.title", comment: "")
         }
         settingTable.heightAnchor.constraint(equalToConstant: CGFloat(settings.count * 75)).isActive = true
         settingTable.reloadData()
@@ -382,9 +381,9 @@ extension CreateTrackerViewController: UICollectionViewDataSource {
         }
         switch indexPath.section {
         case 0:
-            header.configure(title: "Emoji")
+            header.configure(title: NSLocalizedString("emoji.title", comment: ""))
         case 1:
-            header.configure(title: "Цвет")
+            header.configure(title: NSLocalizedString("color.title", comment: ""))
         default:
             return UICollectionReusableView()
         }
@@ -468,7 +467,7 @@ extension CreateTrackerViewController: ConfigureScheduleViewControllerDelegate {
 
     private func makeCaption(from schedule: Set<WeekDay>) -> String {
         if schedule.count == 7 {
-            return "Каждый день"
+            return NSLocalizedString("weekDay.all", comment: "")
         }
         let weekDays = schedule.sorted { $0.rawValue < $1.rawValue }
         var names: Array<String> = []
@@ -476,21 +475,21 @@ extension CreateTrackerViewController: ConfigureScheduleViewControllerDelegate {
         for day in weekDays {
             switch day {
             case .monday:
-                names.append("Пн")
+                names.append(NSLocalizedString("monday.short", comment: ""))
             case .tuesday:
-                names.append("Вт")
+                names.append(NSLocalizedString("tuesday.short", comment: ""))
             case .wednesday:
-                names.append("Ср")
+                names.append(NSLocalizedString("wednesday.short", comment: ""))
             case .thursday:
-                names.append("Чт")
+                names.append(NSLocalizedString("thursday.short", comment: ""))
             case .friday:
-                names.append("Пт")
+                names.append(NSLocalizedString("friday.short", comment: ""))
             case .saturday:
-                names.append("Сб")
+                names.append(NSLocalizedString("saturday.short", comment: ""))
             case .sunday:
-                names.append("Вс")
+                names.append(NSLocalizedString("sunday.short", comment: ""))
             }
         }
-        return names.joined(separator: ", ")
+        return names.joined(separator: NSLocalizedString("weekDay.separator", comment: ""))
     }
 }

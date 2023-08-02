@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A00970862A7ACC2600A7BCCF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00970822A7ACC2600A7BCCF /* Localizable.strings */; };
+		A00970872A7ACC2700A7BCCF /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = A00970842A7ACC2600A7BCCF /* Localizable.stringsdict */; };
 		A00E98152A5D1E7800883A0F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00E98142A5D1E7800883A0F /* Observable.swift */; };
 		A00E98172A5D1E7C00883A0F /* OnboardingPageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00E98162A5D1E7C00883A0F /* OnboardingPageStorage.swift */; };
 		A00E98192A5D1F3D00883A0F /* CreateCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00E98182A5D1F3D00883A0F /* CreateCategoryViewController.swift */; };
@@ -32,7 +34,6 @@
 		A0A9E84D2A5B036100E54622 /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A9E84A2A5B036100E54622 /* CategoryStore.swift */; };
 		A0A9E84E2A5B036100E54622 /* TrackerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A9E84B2A5B036100E54622 /* TrackerStore.swift */; };
 		A0A9E8542A5B065700E54622 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0A9E8522A5B065700E54622 /* Main.storyboard */; };
-		A0C607E02A750B5E009A9DB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0C607DF2A750B5E009A9DB4 /* Localizable.strings */; };
 		A0E181982A527D4C0012330B /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E181962A527D4C0012330B /* UIColorExtension.swift */; };
 		A0E181992A527D4C0012330B /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E181972A527D4C0012330B /* UIViewControllerExtension.swift */; };
 		A0E1819E2A527D5F0012330B /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E1819B2A527D5F0012330B /* CategoryModel.swift */; };
@@ -54,6 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A00970832A7ACC2600A7BCCF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Localizable.strings; sourceTree = "<group>"; };
+		A00970852A7ACC2600A7BCCF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		A00E98142A5D1E7800883A0F /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		A00E98162A5D1E7C00883A0F /* OnboardingPageStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageStorage.swift; sourceTree = "<group>"; };
 		A00E98182A5D1F3D00883A0F /* CreateCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCategoryViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +84,6 @@
 		A0A9E84A2A5B036100E54622 /* CategoryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryStore.swift; sourceTree = "<group>"; };
 		A0A9E84B2A5B036100E54622 /* TrackerStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerStore.swift; sourceTree = "<group>"; };
 		A0A9E8532A5B065700E54622 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A0C607DF2A750B5E009A9DB4 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A0E181962A527D4C0012330B /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		A0E181972A527D4C0012330B /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		A0E1819B2A527D5F0012330B /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
@@ -113,6 +115,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A00970812A7ACC2600A7BCCF /* ru.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				A00970822A7ACC2600A7BCCF /* Localizable.strings */,
+				A00970842A7ACC2600A7BCCF /* Localizable.stringsdict */,
+			);
+			name = ru.lproj;
+			path = Tracker_for_tracking_habits/ru.lproj;
+			sourceTree = "<group>";
+		};
 		A00E98222A5D209700883A0F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +137,7 @@
 		A02FA5222A50929B002398BE = {
 			isa = PBXGroup;
 			children = (
+				A00970812A7ACC2600A7BCCF /* ru.lproj */,
 				A02FA52D2A50929B002398BE /* Tracker_for_tracking_habits */,
 				A02FA52C2A50929B002398BE /* Products */,
 			);
@@ -153,7 +166,6 @@
 				A02FA5392A50929C002398BE /* LaunchScreen.storyboard */,
 				A0A9E8522A5B065700E54622 /* Main.storyboard */,
 				A02FA53C2A50929C002398BE /* Info.plist */,
-				A0C607DF2A750B5E009A9DB4 /* Localizable.strings */,
 				A097021C2A610241002789C3 /* DataModel.xcdatamodeld */,
 			);
 			path = Tracker_for_tracking_habits;
@@ -281,6 +293,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = A02FA5222A50929B002398BE;
 			productRefGroup = A02FA52C2A50929B002398BE /* Products */;
@@ -298,8 +311,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0A9E8542A5B065700E54622 /* Main.storyboard in Resources */,
-				A0C607E02A750B5E009A9DB4 /* Localizable.strings in Resources */,
+				A00970862A7ACC2600A7BCCF /* Localizable.strings in Resources */,
 				A02FA53B2A50929C002398BE /* LaunchScreen.storyboard in Resources */,
+				A00970872A7ACC2700A7BCCF /* Localizable.stringsdict in Resources */,
 				A02FA5382A50929C002398BE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,6 +371,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		A00970822A7ACC2600A7BCCF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A00970832A7ACC2600A7BCCF /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		A00970842A7ACC2600A7BCCF /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A00970852A7ACC2600A7BCCF /* ru */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 		A02FA5392A50929C002398BE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
