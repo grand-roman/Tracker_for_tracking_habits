@@ -24,6 +24,8 @@ final class SelectCategoryViewController: UIViewController {
 
         table.register(CheckTableViewCell.self, forCellReuseIdentifier: CheckTableViewCell.identifier)
         table.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        table.tableHeaderView = UIView() // remove separator above first cell
+
         table.isScrollEnabled = false
 
         table.layer.masksToBounds = true
@@ -79,6 +81,17 @@ final class SelectCategoryViewController: UIViewController {
             }
             self.reloadTableData()
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        guard let currentTitle = currentCategoryTitle,
+            let index = viewModel.categoryList.firstIndex(where: { $0.title == currentTitle })
+            else {
+            return
+        }
+        viewModel.selectCategory(at: index)
     }
 
     @objc private func didTapAddButton() {

@@ -127,10 +127,6 @@ extension ConfigureScheduleViewController: UITableViewDataSource {
         switchCell.delegate = self
         switchCell.configure(options: switches[indexPath.row])
 
-        if indexPath.row == switches.count - 1 { // hide separator for last cell
-            let centerX = switchCell.bounds.width / 2
-            switchCell.separatorInset = UIEdgeInsets(top: 0, left: centerX, bottom: 0, right: centerX)
-        }
         return switchCell
     }
 }

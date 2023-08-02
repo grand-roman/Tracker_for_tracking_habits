@@ -1,0 +1,62 @@
+// OnboardingPage
+onboardingBlue.title = "Отслеживайте только\nто, что хотите";
+onboardingRed.title = "Даже если это\nне литры воды и йога";
+
+// PlaceholderView
+trackersPlaceholder.caption = "Что будем отслеживать?";
+statisticsPlaceholder.caption = "Анализировать пока нечего";
+searchPlaceholder.caption = "Ничего не найдено";
+categoriesPlaceholder.caption = "Привычки и события можно\nобъединить по смыслу";
+
+// ViewController
+trackers.title = "Трекеры";
+statistics.title = "Статистика";
+
+addTracker.title = "Создание трекера";
+createHabit.title = "Новая привычка";
+createIrregularEvent.title = "Новое нерегулярное событие";
+createCategory.title = "Новая категория";
+
+category.title = "Категория";
+schedule.title = "Расписание";
+emoji.title = "Emoji";
+color.title = "Цвет";
+
+// TextField
+search.placeholder = "Поиск";
+trackerName.placeholder = "Введите название трекера";
+categoryTitle.placeholder = "Введите название категории";
+
+// Button
+button.passOnboarding = "Вот это технологии!";
+button.habit = "Привычка";
+button.irregularEvent = "Нерегулярное событие";
+button.cancel = "Отменить";
+button.create = "Создать";
+button.addCategory = "Добавить категорию";
+button.done = "Готово";
+
+// WeekDay
+weekDay.monday = "Понедельник";
+weekDay.tuesday = "Вторник";
+weekDay.wednesday = "Среда";
+weekDay.thursday = "Четверг";
+weekDay.friday = "Пятница";
+weekDay.saturday = "Суббота";
+weekDay.sunday = "Воскресенье";
+
+weekDay.mon = "Пн";
+weekDay.tue = "Вт";
+weekDay.wed = "Ср";
+weekDay.thu = "Чт";
+weekDay.fri = "Пт";
+weekDay.sat = "Сб";
+weekDay.sun = "Вс";
+
+weekDay.all = "Каждый день";
+weekDay.separator = ", ";
+
+// TestData
+testTracker.emoji = "🍏";
+testTracker.name = "Тестовый трекер";
+testCategory.title = "Тестовая категория";

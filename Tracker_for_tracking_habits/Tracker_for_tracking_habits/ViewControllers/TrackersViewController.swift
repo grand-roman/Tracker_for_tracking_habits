@@ -75,7 +75,6 @@ final class TrackersViewController: UIViewController {
 
         categories = categoryStore.fetchedCategories
         completedRecords = recordStore.fetchedRecords
-        visibleCategories.append(contentsOf: categories)
 
         reloadVisibleCategories()
     }
