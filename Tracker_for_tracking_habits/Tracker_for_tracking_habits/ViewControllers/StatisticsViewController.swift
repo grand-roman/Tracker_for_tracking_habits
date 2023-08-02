@@ -5,7 +5,7 @@ final class StatisticsViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
 
-        label.text = "Статистика"
+        label.text = NSLocalizedString("statistics.title", comment: "")
         label.textColor = .ypBlackDay
         label.font = .systemFont(ofSize: 34, weight: .bold)
 
@@ -17,7 +17,7 @@ final class StatisticsViewController: UIViewController {
 
         view.configure(
             image: UIImage(named: "StatisticsPlaceholder"),
-            caption: "Анализировать пока нечего"
+            caption: NSLocalizedString("statisticsPlaceholder.caption", comment: "")
         )
         return view
     }()

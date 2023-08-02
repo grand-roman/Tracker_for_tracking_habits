@@ -27,7 +27,7 @@ final class ConfigureScheduleViewController: UIViewController {
     private lazy var doneButton: UIButton = {
         let button = UIButton(type: .custom)
 
-        button.setTitle("Готово", for: .normal)
+        button.setTitle(NSLocalizedString("doneButton.title", comment: ""), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
 
         button.layer.masksToBounds = true
@@ -62,13 +62,13 @@ final class ConfigureScheduleViewController: UIViewController {
 
     private func appendSwitches() {
         switches.append(contentsOf: [
-            SwitchOptions(weekDay: .monday, name: "Понедельник", isOn: currentSchedule.contains(.monday)),
-            SwitchOptions(weekDay: .tuesday, name: "Вторник", isOn: currentSchedule.contains(.tuesday)),
-            SwitchOptions(weekDay: .wednesday, name: "Среда", isOn: currentSchedule.contains(.wednesday)),
-            SwitchOptions(weekDay: .thursday, name: "Четверг", isOn: currentSchedule.contains(.thursday)),
-            SwitchOptions(weekDay: .friday, name: "Пятница", isOn: currentSchedule.contains(.friday)),
-            SwitchOptions(weekDay: .saturday, name: "Суббота", isOn: currentSchedule.contains(.saturday)),
-            SwitchOptions(weekDay: .sunday, name: "Воскресенье", isOn: currentSchedule.contains(.sunday))
+            SwitchOptions(weekDay: .monday, name: NSLocalizedString("monday.full", comment: ""), isOn: currentSchedule.contains(.monday)),
+            SwitchOptions(weekDay: .tuesday, name: NSLocalizedString("tuesday.full", comment: ""), isOn: currentSchedule.contains(.tuesday)),
+            SwitchOptions(weekDay: .wednesday, name: NSLocalizedString("wednesday.full", comment: ""), isOn: currentSchedule.contains(.wednesday)),
+            SwitchOptions(weekDay: .thursday, name: NSLocalizedString("thursday.full", comment: ""), isOn: currentSchedule.contains(.thursday)),
+            SwitchOptions(weekDay: .friday, name: NSLocalizedString("friday.full", comment: ""), isOn: currentSchedule.contains(.friday)),
+            SwitchOptions(weekDay: .saturday, name: NSLocalizedString("saturday.full", comment: ""), isOn: currentSchedule.contains(.saturday)),
+            SwitchOptions(weekDay: .sunday, name: NSLocalizedString("sunday.full", comment: ""), isOn: currentSchedule.contains(.sunday))
             ])
     }
 
@@ -78,7 +78,7 @@ final class ConfigureScheduleViewController: UIViewController {
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes
-        navigationController?.navigationBar.topItem?.title = "Расписание"
+        navigationController?.navigationBar.topItem?.title = NSLocalizedString("schedule.title", comment: "")
     }
 
     private func makeViewLayout() {

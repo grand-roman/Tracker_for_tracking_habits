@@ -5,7 +5,7 @@ final class TrackersViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
 
-        label.text = "Трекеры"
+        label.text = NSLocalizedString("trackers.title", comment: "")
         label.textColor = .ypBlackDay
         label.font = .systemFont(ofSize: 34, weight: .bold)
 
@@ -25,7 +25,7 @@ final class TrackersViewController: UIViewController {
     private lazy var searchField: UISearchTextField = {
         let field = UISearchTextField()
 
-        field.placeholder = "Поиск"
+        field.placeholder = NSLocalizedString("searchField.placeholder", comment: "")
         field.heightAnchor.constraint(equalToConstant: 36).isActive = true
         field.addTarget(self, action: #selector(reloadVisibleCategories), for: .editingChanged)
 
@@ -324,13 +324,13 @@ private extension TrackersViewController {
             placeholderView.isHidden = false
             placeholderView.configure(
                 image: UIImage(named: "CategoriesPlaceholder"),
-                caption: "Что будем отслеживать?"
+                caption: NSLocalizedString("trackersPlaceholder.caption", comment: "")
             )
         } else if visibleCategories.isEmpty {
             placeholderView.isHidden = false
             placeholderView.configure(
                 image: UIImage(named: "SearchPlaceholder"),
-                caption: "Ничего не найдено"
+                caption: NSLocalizedString("searchPlaceholder.caption", comment: "")
             )
         } else {
             placeholderView.isHidden = true

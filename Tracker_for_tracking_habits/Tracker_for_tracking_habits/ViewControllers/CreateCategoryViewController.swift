@@ -11,7 +11,7 @@ final class CreateCategoryViewController: UIViewController {
     private lazy var titleField: CustomTextField = {
         let field = CustomTextField()
 
-        field.placeholder = "Введите название категории"
+        field.placeholder = NSLocalizedString("categoryTitleField.placeholder", comment: "")
         field.font = .systemFont(ofSize: 17, weight: .regular)
         field.backgroundColor = .ypBackgroundDay
 
@@ -26,7 +26,7 @@ final class CreateCategoryViewController: UIViewController {
     private lazy var doneButton: UIButton = {
         let button = UIButton(type: .custom)
 
-        button.setTitle("Готово", for: .normal)
+        button.setTitle(NSLocalizedString("doneButton.title", comment: ""), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .ypGray
         button.isEnabled = false
@@ -81,7 +81,7 @@ final class CreateCategoryViewController: UIViewController {
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes
-        navigationController?.navigationBar.topItem?.title = "Новая категория"
+        navigationController?.navigationBar.topItem?.title = NSLocalizedString("createCategory.title", comment: "")
     }
 
     private func makeViewLayout() {
