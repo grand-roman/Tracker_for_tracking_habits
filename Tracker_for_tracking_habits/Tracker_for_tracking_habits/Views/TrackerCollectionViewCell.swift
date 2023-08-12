@@ -135,6 +135,8 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
             else {
             return
         }
+        AnalyticService.shared.report(event: "click", with: ["screen": "Main", "item": "track"])
+
         if isCompleted {
             delegate?.uncompleteTracker(with: trackerID, at: indexPath)
         } else {

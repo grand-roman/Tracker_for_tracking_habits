@@ -80,11 +80,25 @@ final class TrackersViewController: UIViewController {
         reloadVisibleCategories()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        AnalyticService.shared.report(event: "open", with: ["screen": "Main"])
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        AnalyticService.shared.report(event: "close", with: ["screen": "Main"])
+    }
+
     private func isMatchRecord(model: RecordModel, with trackerID: UUID) -> Bool {
         return model.trackerID == trackerID && Calendar.current.isDate(model.completionDate, inSameDayAs: selectedDate)
     }
 
     @objc private func didTapAddButton() {
+        AnalyticService.shared.report(event: "click", with: ["screen": "Main", "item": "add_track"])
+
         let trackerController = AddTrackerViewController()
         trackerController.delegate = self
         present(UINavigationController(rootViewController: trackerController), animated: true)
@@ -189,6 +203,116 @@ extension TrackersViewController: UICollectionViewDataSource {
     }
 }
 
+extension TrackersViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
+        guard indexPaths.count > 0 else {
+            return nil
+        }
+        let indexPath = indexPaths[0]
+
+        let tracker = visibleCategories[indexPath.section].trackers[indexPath.item]
+        let pinTitleKey = tracker.isPinned ? "unpinItem.title" : "pinItem.title"
+
+        return UIContextMenuConfiguration(actionProvider: { menuElements in
+            return UIMenu(children: [
+                UIAction(
+                    title: NSLocalizedString(pinTitleKey, comment: ""),
+                    handler: { [weak self] _ in
+                        guard let self = self else {
+                            return
+                        }
+                        self.pinTracker(at: indexPath)
+                    }
+                ),
+                UIAction(
+                    title: NSLocalizedString("editItem.title", comment: ""),
+                    handler: { [weak self] _ in
+                        guard let self = self else {
+                            return
+                        }
+                        self.editTracker(at: indexPath)
+                    }
+                ),
+                UIAction(
+                    title: NSLocalizedString("deleteItem.title", comment: ""),
+                    attributes: .destructive,
+                    handler: { [weak self] _ in
+                        guard let self = self else {
+                            return
+                        }
+                        self.deleteTracker(at: indexPath)
+                    }
+                )
+                ])
+        })
+    }
+
+    private func editTracker(at indexPath: IndexPath) {
+        AnalyticService.shared.report(event: "click", with: ["screen": "Main", "item": "edit"])
+
+        let tracker = visibleCategories[indexPath.section].trackers[indexPath.item]
+        let controller = EditTrackerViewController()
+
+        controller.editDelegate = self
+        controller.isHabitView = !tracker.schedule.isEmpty
+        controller.setTrackerToEdit(model: tracker, in: findCategoryTitle(by: tracker.id) ?? "")
+
+        present(UINavigationController(rootViewController: controller), animated: true)
+    }
+
+    private func pinTracker(at indexPath: IndexPath) {
+        var tracker = visibleCategories[indexPath.section].trackers[indexPath.item]
+        tracker.isPinned = !tracker.isPinned
+
+        try! trackerStore.saveTracker(model: tracker, in: findCategoryTitle(by: tracker.id) ?? "")
+        reloadVisibleCategories()
+    }
+
+    private func deleteTracker(at indexPath: IndexPath) {
+        AnalyticService.shared.report(event: "click", with: ["screen": "Main", "item": "delete"])
+
+        let controller = UIAlertController(
+            title: NSLocalizedString("deleteConfirmation.title", comment: ""),
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        controller.addAction(
+            UIAlertAction(
+                title: NSLocalizedString("deleteItem.title", comment: ""),
+                style: .destructive,
+                handler: { [weak self] _ in
+                    guard let self = self else {
+                        return
+                    }
+                    try! self.trackerStore.deleteTracker(
+                        model: self.visibleCategories[indexPath.section].trackers[indexPath.item]
+                    )
+                    self.reloadVisibleCategories()
+                }
+            )
+        )
+        controller.addAction(
+            UIAlertAction(
+                title: NSLocalizedString("cancelButton.title", comment: ""),
+                style: .cancel
+            )
+        )
+        present(controller, animated: true)
+    }
+
+    private func findCategoryTitle(by trackerID: UUID) -> String? {
+        for category in categories {
+            for tracker in category.trackers {
+                if tracker.id == trackerID {
+                    return category.title
+                }
+            }
+        }
+        return nil
+    }
+}
+
 extension TrackersViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -244,6 +368,19 @@ extension TrackersViewController: AddTrackerViewControllerDelegate {
             print(error.localizedDescription)
         }
         reloadVisibleCategories()
+        dismiss(animated: true)
+    }
+}
+
+extension TrackersViewController: EditTrackerViewControllerDelegate {
+
+    func didSaveEditedTracker(model: TrackerModel, in category: String) {
+        try! trackerStore.saveTracker(model: model, in: category)
+        reloadVisibleCategories()
+        dismiss(animated: true)
+    }
+
+    func didCancelEditTracker() {
         dismiss(animated: true)
     }
 }

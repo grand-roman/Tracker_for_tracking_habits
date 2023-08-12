@@ -500,3 +500,82 @@ extension CreateTrackerViewController: ConfigureScheduleViewControllerDelegate {
         return names.joined(separator: NSLocalizedString("weekDay.separator", comment: ""))
     }
 }
+
+protocol EditTrackerViewControllerDelegate: AnyObject {
+    func didSaveEditedTracker(model: TrackerModel, in category: String)
+    func didCancelEditTracker()
+}
+
+class EditTrackerViewController: CreateTrackerViewController {
+
+    private let colorSerializer = UIColorSerializer()
+
+    private var trackerID: UUID?
+    private var eventDate: Date?
+    private var isPinned: Bool?
+
+    weak var editDelegate: EditTrackerViewControllerDelegate?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        customizeEditView()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        configureSettingCell(caption: selectedCategoryTitle ?? "", at: 0)
+        if isHabitView {
+            configureSettingCell(caption: makeCaption(from: configuredSchedule), at: 1)
+        }
+        collectionView(emojiColorCollection, didSelectItemAt: currentEmojiIndexPath ?? IndexPath(item: 0, section: 0))
+        collectionView(emojiColorCollection, didSelectItemAt: currentColorIndexPath ?? IndexPath(item: 0, section: 1))
+    }
+
+    override func didTapCancelButton() {
+        editDelegate?.didCancelEditTracker()
+    }
+
+    override func didTapCreateButton() {
+        guard let trackerName = nameField.text,
+            let categoryTitle = selectedCategoryTitle
+        else {
+            return
+        }
+        let tracker = TrackerModel(
+            id: trackerID ?? UUID(),
+            name: trackerName.trimmingCharacters(in: .whitespaces),
+            color: colors[currentColorIndexPath?.item ?? 0],
+            emoji: emojis[currentEmojiIndexPath?.item ?? 0],
+            schedule: configuredSchedule,
+            date: eventDate,
+            isPinned: isPinned ?? false
+        )
+        editDelegate?.didSaveEditedTracker(model: tracker, in: categoryTitle)
+    }
+
+    func setTrackerToEdit(model: TrackerModel, in category: String) {
+        trackerID = model.id
+        eventDate = model.date
+        isPinned = model.isPinned
+
+        nameField.text = model.name
+        selectedCategoryTitle = category
+        configuredSchedule = model.schedule
+
+        let emojIndex = emojis.firstIndex(where: { $0 == model.emoji }) ?? 0
+        currentEmojiIndexPath = IndexPath(item: emojIndex, section: 0)
+
+        let hexColors = colors.map({ colorSerializer.serialize(color: $0) })
+        let modelColor = colorSerializer.serialize(color: model.color)
+        let colorIndex = hexColors.firstIndex(where: { $0 == modelColor }) ?? 0
+        currentColorIndexPath = IndexPath(item: colorIndex, section: 1)
+    }
+
+    private func customizeEditView() {
+        let titleKey = isHabitView ? "editHabit.title" : "editIrregularEvent.title"
+        navigationController?.navigationBar.topItem?.title = NSLocalizedString(titleKey, comment: "")
+        createButton.setTitle(NSLocalizedString("saveButton.title", comment: ""), for: .normal)
+    }
+}
