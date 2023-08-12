@@ -38,6 +38,15 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
+    private let pinImage: UIImageView = {
+        let image = UIImageView()
+
+        image.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        image.heightAnchor.constraint(equalTo: image.widthAnchor).isActive = true
+
+        return image
+    }()
+
     private let nameLabel: UILabel = {
         let label = UILabel()
 
@@ -98,9 +107,10 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
         self.isCompleted = isCompleted
         self.isHabit = !model.schedule.isEmpty
 
-        nameLabel.text = model.name
-        emojiLabel.text = model.emoji
         canvasView.backgroundColor = model.color
+        emojiLabel.text = model.emoji
+        pinImage.image = model.isPinned ? UIImage(named: "PinSymbol") : UIImage()
+        nameLabel.text = model.name
 
         if isHabit! {
             setCounter(days: completedDays)
@@ -136,6 +146,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(canvasView)
         contentView.addSubview(emojiView)
         contentView.addSubview(emojiLabel)
+        contentView.addSubview(pinImage)
         contentView.addSubview(nameLabel)
         contentView.addSubview(counterLabel)
         contentView.addSubview(incrementButton)
@@ -143,6 +154,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
         canvasView.translatesAutoresizingMaskIntoConstraints = false
         emojiView.translatesAutoresizingMaskIntoConstraints = false
         emojiLabel.translatesAutoresizingMaskIntoConstraints = false
+        pinImage.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         counterLabel.translatesAutoresizingMaskIntoConstraints = false
         incrementButton.translatesAutoresizingMaskIntoConstraints = false
@@ -157,6 +169,9 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
 
             emojiLabel.centerXAnchor.constraint(equalTo: emojiView.centerXAnchor),
             emojiLabel.centerYAnchor.constraint(equalTo: emojiView.centerYAnchor),
+
+            pinImage.topAnchor.constraint(equalTo: canvasView.topAnchor, constant: 12),
+            pinImage.trailingAnchor.constraint(equalTo: canvasView.trailingAnchor, constant: -4),
 
             nameLabel.bottomAnchor.constraint(equalTo: canvasView.bottomAnchor, constant: -12),
             nameLabel.leadingAnchor.constraint(equalTo: canvasView.leadingAnchor, constant: 12),

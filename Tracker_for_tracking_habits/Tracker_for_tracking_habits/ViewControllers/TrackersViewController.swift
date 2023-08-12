@@ -273,11 +273,16 @@ private extension TrackersViewController {
     @objc func reloadVisibleCategories() {
         visibleCategories = []
         let searchText = searchField.text ?? ""
+        var pinnedTrackers: Array<TrackerModel> = []
 
         for category in categories {
             var visibleTrackers: Array<TrackerModel> = []
 
             for tracker in category.trackers {
+                if tracker.isPinned {
+                    pinnedTrackers.append(tracker)
+                    continue
+                }
                 if (
                     isVisibleHabit(model: tracker) || isVisibleEvent(model: tracker)
                     ) && (
@@ -290,6 +295,15 @@ private extension TrackersViewController {
             if !visibleTrackers.isEmpty {
                 visibleCategories.append(CategoryModel(title: category.title, trackers: visibleTrackers))
             }
+        }
+        if !pinnedTrackers.isEmpty {
+            visibleCategories.insert(
+                CategoryModel(
+                    title: NSLocalizedString("pinnedCategory.title", comment: ""),
+                    trackers: pinnedTrackers
+                ),
+                at: 0
+            )
         }
         showAppropriatePlaceholder()
         trackerCollection.reloadData()
