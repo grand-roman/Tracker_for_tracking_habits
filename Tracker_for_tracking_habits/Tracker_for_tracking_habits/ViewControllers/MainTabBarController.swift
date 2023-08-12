@@ -6,7 +6,7 @@ final class MainTabBarController: UITabBarController {
         super.viewDidLoad()
 
         tabBar.layer.borderWidth = 1
-        tabBar.layer.borderColor = UIColor.ypGray.cgColor
+        tabBar.layer.borderColor = UIColor.tabBarBorderColor.cgColor
 
         setupTabBarItems()
     }

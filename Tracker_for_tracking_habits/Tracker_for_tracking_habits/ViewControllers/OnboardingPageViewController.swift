@@ -31,7 +31,7 @@ final class OnboardingPageViewController: UIPageViewController {
         control.currentPage = 0
 
         control.pageIndicatorTintColor = .ypGray
-        control.currentPageIndicatorTintColor = .ypBlackDay
+        control.currentPageIndicatorTintColor = .ypBlack
 
         control.addTarget(self, action: #selector(didTapPageControl), for: .valueChanged)
         return control
@@ -42,7 +42,7 @@ final class OnboardingPageViewController: UIPageViewController {
 
         button.setTitle(NSLocalizedString("onboardingNextButton.title", comment: ""), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
-        button.backgroundColor = .ypBlackDay
+        button.backgroundColor = .ypBlack
 
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16

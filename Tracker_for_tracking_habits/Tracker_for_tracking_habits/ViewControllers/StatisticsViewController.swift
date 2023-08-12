@@ -6,7 +6,7 @@ final class StatisticsViewController: UIViewController {
         let label = UILabel()
 
         label.text = NSLocalizedString("statistics.title", comment: "")
-        label.textColor = .ypBlackDay
+        label.textColor = .ypBlackAdaptive
         label.font = .systemFont(ofSize: 34, weight: .bold)
 
         return label
@@ -29,7 +29,7 @@ final class StatisticsViewController: UIViewController {
     }
 
     private func makeViewLayout() {
-        view.backgroundColor = .ypWhiteDay
+        view.backgroundColor = .ypWhiteAdaptive
 
         view.addSubview(titleLabel)
         view.addSubview(placeholderView)

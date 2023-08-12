@@ -15,7 +15,7 @@ final class CreateTrackerViewController: UIViewController {
 
         field.placeholder = NSLocalizedString("trackerNameField.placeholder", comment: "")
         field.font = .systemFont(ofSize: 17, weight: .regular)
-        field.backgroundColor = .ypBackgroundDay
+        field.backgroundColor = .ypBackgroundAdaptive
 
         field.layer.masksToBounds = true
         field.layer.cornerRadius = 16
@@ -31,6 +31,9 @@ final class CreateTrackerViewController: UIViewController {
         table.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
         table.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         table.isScrollEnabled = false
+
+        table.separatorColor = .ypGray
+        table.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
 
         table.layer.masksToBounds = true
         table.layer.cornerRadius = 16
@@ -135,10 +138,12 @@ final class CreateTrackerViewController: UIViewController {
             || currentEmojiIndexPath == nil
             || currentColorIndexPath == nil
         {
+            createButton.setTitleColor(.ypWhite, for: .normal)
             createButton.backgroundColor = .ypGray
             createButton.isEnabled = false
         } else {
-            createButton.backgroundColor = .ypBlackDay
+            createButton.setTitleColor(.ypWhiteAdaptive, for: .normal)
+            createButton.backgroundColor = .ypBlackAdaptive
             createButton.isEnabled = true
         }
     }
@@ -165,7 +170,7 @@ final class CreateTrackerViewController: UIViewController {
 
     private func setupNavigationBar() {
         let titleAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.ypBlackDay,
+            NSAttributedString.Key.foregroundColor: UIColor.ypBlackAdaptive,
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes
@@ -173,7 +178,7 @@ final class CreateTrackerViewController: UIViewController {
     }
 
     private func makeViewLayout() {
-        view.backgroundColor = .ypWhiteDay
+        view.backgroundColor = .ypWhiteAdaptive
 
         let scrollView = UIScrollView()
         let mainStack = makeMainStack()

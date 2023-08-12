@@ -23,10 +23,11 @@ final class SelectCategoryViewController: UIViewController {
         let table = UITableView(frame: .zero)
 
         table.register(CheckTableViewCell.self, forCellReuseIdentifier: CheckTableViewCell.identifier)
-        table.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        table.tableHeaderView = UIView() // remove separator above first cell
-
         table.isScrollEnabled = false
+
+        table.separatorColor = .ypGray
+        table.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        table.tableHeaderView = UIView()
 
         table.layer.masksToBounds = true
         table.layer.cornerRadius = 16
@@ -48,8 +49,9 @@ final class SelectCategoryViewController: UIViewController {
         let button = UIButton(type: .custom)
 
         button.setTitle(NSLocalizedString("addCategoryButton.title", comment: ""), for: .normal)
+        button.setTitleColor(.ypWhiteAdaptive, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
-        button.backgroundColor = .ypBlackDay
+        button.backgroundColor = .ypBlackAdaptive
 
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16
@@ -102,7 +104,7 @@ final class SelectCategoryViewController: UIViewController {
 
     private func setupNavigationBar() {
         let titleAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.ypBlackDay,
+            NSAttributedString.Key.foregroundColor: UIColor.ypBlackAdaptive,
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes
@@ -110,7 +112,7 @@ final class SelectCategoryViewController: UIViewController {
     }
 
     private func makeViewLayout() {
-        view.backgroundColor = .ypWhiteDay
+        view.backgroundColor = .ypWhiteAdaptive
 
         view.addSubview(checkTable)
         view.addSubview(placeholderView)

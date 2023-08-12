@@ -6,7 +6,7 @@ final class TrackersViewController: UIViewController {
         let label = UILabel()
 
         label.text = NSLocalizedString("trackers.title", comment: "")
-        label.textColor = .ypBlackDay
+        label.textColor = .ypBlackAdaptive
         label.font = .systemFont(ofSize: 34, weight: .bold)
 
         return label
@@ -34,6 +34,7 @@ final class TrackersViewController: UIViewController {
 
     private let trackerCollection: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        collection.backgroundColor = .ypWhiteAdaptive
 
         collection.register(
             TrackerCollectionViewCell.self,
@@ -70,7 +71,7 @@ final class TrackersViewController: UIViewController {
         setupNavigationBar()
         makeViewLayout()
         hideKeyboardWhenDidTap()
-        
+
         TestDataLoader.shared.loadTestData()
 
         categories = categoryStore.fetchedCategories
@@ -97,11 +98,11 @@ final class TrackersViewController: UIViewController {
             action: #selector(didTapAddButton)
         )
         navigationController?.navigationBar.topItem?.setLeftBarButton(addButton, animated: false)
-        navigationController?.navigationBar.tintColor = .ypBlackDay
+        navigationController?.navigationBar.tintColor = .ypBlackAdaptive
     }
 
     private func makeViewLayout() {
-        view.backgroundColor = .ypWhiteDay
+        view.backgroundColor = .ypWhiteAdaptive
 
         let headerStack = makeHeaderStack()
 
