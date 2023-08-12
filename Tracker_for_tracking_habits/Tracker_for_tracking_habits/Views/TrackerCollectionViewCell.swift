@@ -22,7 +22,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
 
     private let emojiView: UIView = {
         let view = UIView()
-        view.backgroundColor = .ypBackgroundDay
+        view.backgroundColor = .ypBackground
 
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 12
@@ -41,7 +41,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
 
-        label.textColor = .ypWhiteDay
+        label.textColor = .ypWhite
         label.font = .systemFont(ofSize: 12, weight: .medium)
         label.numberOfLines = 2
 
@@ -51,7 +51,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
     private let counterLabel: UILabel = {
         let label = UILabel()
 
-        label.textColor = .ypBlackDay
+        label.textColor = .ypBlackAdaptive
         label.font = .systemFont(ofSize: 12, weight: .medium)
 
         return label
@@ -106,7 +106,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
             setCounter(days: completedDays)
 
             let image = isCompleted ? UIImage(named: "CheckMarkButton") : UIImage(named: "PlusButton")
-            incrementButton.setImage(image?.withTintColor(.ypWhiteDay), for: .normal)
+            incrementButton.setImage(image?.withTintColor(.ypWhiteAdaptive), for: .normal)
             incrementButton.backgroundColor = isCompleted ? model.color.withAlphaComponent(0.3) : model.color
         } else {
             incrementButton.backgroundColor = model.color

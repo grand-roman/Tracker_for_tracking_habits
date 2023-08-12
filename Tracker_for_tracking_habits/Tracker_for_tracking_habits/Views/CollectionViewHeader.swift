@@ -7,7 +7,7 @@ final class CollectionViewHeader: UICollectionReusableView {
     private let titleLabel: UILabel = {
         let label = UILabel()
 
-        label.textColor = .ypBlackDay
+        label.textColor = .ypBlackAdaptive
         label.font = .systemFont(ofSize: 19, weight: .bold)
 
         return label

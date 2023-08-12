@@ -7,7 +7,7 @@ final class SettingTableViewCell: UITableViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
 
-        label.textColor = .ypBlackDay
+        label.textColor = .ypBlackAdaptive
         label.font = .systemFont(ofSize: 17, weight: .regular)
 
         return label
@@ -45,7 +45,7 @@ final class SettingTableViewCell: UITableViewCell {
     }
 
     private func makeViewLayout() {
-        contentView.backgroundColor = .ypBackgroundDay
+        contentView.backgroundColor = .ypBackgroundAdaptive
         contentView.heightAnchor.constraint(equalToConstant: 75).isActive = true
 
         let labelStack = makeLabelStack()
