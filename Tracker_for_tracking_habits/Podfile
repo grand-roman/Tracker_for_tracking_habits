@@ -3,10 +3,9 @@
 
 target 'Tracker_for_tracking_habits' do
   # Comment the next line if you don't want to use dynamic frameworks
-  # use_frameworks!
-  inherit! :search_paths
-  pod 'YandexMobileMetrica/Dynamic', '4.5.0'
+  use_frameworks!
 
   # Pods for Tracker_for_tracking_habits
+  pod 'YandexMobileMetrica/Dynamic', '4.5.0'
 
 end
