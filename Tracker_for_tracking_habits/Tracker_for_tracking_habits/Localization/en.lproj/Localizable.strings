@@ -1,0 +1,78 @@
+// MARK: OnboardingPage
+blueOnboarding.title = "Track only what\nyou want";
+redOnboarding.title = "Even if it's not liters of\nwater and yoga";
+
+// MARK: PlaceholderView
+trackersPlaceholder.caption = "What will we track?";
+statisticsPlaceholder.caption = "There is nothing to analyze";
+searchPlaceholder.caption = "Nothing found";
+categoriesPlaceholder.caption = "Habits and events can be\ncombined in meaning";
+
+// MARK: ViewController
+trackers.title = "Trackers";
+statistics.title = "Statistics";
+
+addTracker.title = "Create tracker";
+createHabit.title = "New habit";
+createIrregularEvent.title = "New irregular event";
+createCategory.title = "New category";
+
+editHabit.title = "Edit habit";
+editIrregularEvent.title = "Edit irregular event";
+
+category.title = "Category";
+schedule.title = "Schedule";
+emoji.title = "Emoji";
+color.title = "Color";
+
+// MARK: TextField
+searchField.placeholder = "Search";
+trackerNameField.placeholder = "Enter tracker name";
+categoryTitleField.placeholder = "Enter category title";
+
+// MARK: Button
+onboardingNextButton.title = "Amazing technology!";
+habitButton.title = "Habit";
+irregularEventButton.title = "Irregular event";
+cancelButton.title = "Cancel";
+createButton.title = "Create";
+saveButton.title = "Save";
+addCategoryButton.title = "Add category";
+doneButton.title = "Done";
+
+// MARK: ContextMenu
+pinItem.title = "Pin";
+unpinItem.title = "Unpin";
+editItem.title = "Edit";
+deleteItem.title = "Delete";
+
+pinnedCategory.title = "Pinned";
+deleteConfirmation.title = "Are you sure you want to delete the tracker?";
+
+// MARK: Statistics
+completedStatistic.caption = "Trackers completed";
+
+// MARK: WeekDay
+weekDay.all = "Every day";
+weekDay.separator = ", ";
+
+monday.full = "Monday";
+tuesday.full = "Tuesday";
+wednesday.full = "Wednesday";
+thursday.full = "Thursday";
+friday.full = "Friday";
+saturday.full = "Saturday";
+sunday.full = "Sunday";
+
+monday.short = "Mon";
+tuesday.short = "Tue";
+wednesday.short = "Wed";
+thursday.short = "Thu";
+friday.short = "Fri";
+saturday.short = "Sat";
+sunday.short = "Sun";
+
+// MARK: TestData
+testTracker.emoji = "🏃‍";
+testTracker.name = "Catch up on sprints";
+testCategory.title = "Important";

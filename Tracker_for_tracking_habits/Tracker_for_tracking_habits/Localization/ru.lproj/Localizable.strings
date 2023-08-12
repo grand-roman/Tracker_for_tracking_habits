@@ -17,9 +17,12 @@ createHabit.title = "Новая привычка";
 createIrregularEvent.title = "Новое нерегулярное событие";
 createCategory.title = "Новая категория";
 
+editHabit.title = "Редактирование привычки";
+editIrregularEvent.title = "Редактирование нерегулярного события";
+
 category.title = "Категория";
 schedule.title = "Расписание";
-emoji.title = "Emoji";
+emoji.title = "Эмодзи";
 color.title = "Цвет";
 
 // MARK: TextField
@@ -33,8 +36,21 @@ habitButton.title = "Привычка";
 irregularEventButton.title = "Нерегулярное событие";
 cancelButton.title = "Отменить";
 createButton.title = "Создать";
+saveButton.title = "Сохранить";
 addCategoryButton.title = "Добавить категорию";
 doneButton.title = "Готово";
+
+// MARK: ContextMenu
+pinItem.title = "Закрепить";
+unpinItem.title = "Открепить";
+editItem.title = "Редактировать";
+deleteItem.title = "Удалить";
+
+pinnedCategory.title = "Закреплённые";
+deleteConfirmation.title = "Уверены что хотите удалить трекер?";
+
+// MARK: Statistics
+completedStatistic.caption = "Трекеров завершено";
 
 // MARK: WeekDay
 weekDay.all = "Каждый день";
