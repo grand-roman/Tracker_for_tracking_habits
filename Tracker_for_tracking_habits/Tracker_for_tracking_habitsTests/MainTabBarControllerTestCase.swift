@@ -1,7 +1,7 @@
 import XCTest
 import SnapshotTesting
 
-@testable import Tracker
+@testable import Tracker_for_tracking_habits
 
 final class MainTabBarControllerTestCase: XCTestCase {
     

@@ -7,7 +7,8 @@ target 'Tracker_for_tracking_habits' do
 
   # Pods for Tracker_for_tracking_habits
   pod 'YandexMobileMetrica/Dynamic', '4.5.0'
-  target 'TrackerTests' do
+
+  target 'Tracker_for_tracking_habitsTests' do
     inherit! :search_paths
     # Pods for testing
   end

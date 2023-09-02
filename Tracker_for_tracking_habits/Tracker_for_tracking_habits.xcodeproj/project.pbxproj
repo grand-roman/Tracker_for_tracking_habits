@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0361DAB543F6A85B4C9C1FB3 /* Pods_Tracker_for_tracking_habitsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784BFBAC3323A4D87B3F6A67 /* Pods_Tracker_for_tracking_habitsTests.framework */; };
 		31D09FDBC96C0FBFC7F39B16 /* Pods_Tracker_for_tracking_habits.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E74B6156F2C892033A966E3 /* Pods_Tracker_for_tracking_habits.framework */; };
 		A00E98152A5D1E7800883A0F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00E98142A5D1E7800883A0F /* Observable.swift */; };
 		A00E98172A5D1E7C00883A0F /* OnboardingPageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00E98162A5D1E7C00883A0F /* OnboardingPageStorage.swift */; };
@@ -25,30 +26,9 @@
 		A0557C852A87E3D100FAF1A8 /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0557C842A87E3D100FAF1A8 /* StatisticView.swift */; };
 		A0557C882A87E7CE00FAF1A8 /* AnalyticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0557C872A87E7CE00FAF1A8 /* AnalyticService.swift */; };
 		A0557C8A2A87EBA800FAF1A8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A0557C892A87EBA800FAF1A8 /* Podfile */; };
-		A0557CF02A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A0557CCF2A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-dummy.m */; };
-		A0557CF12A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = A0557CD02A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-acknowledgements.markdown */; };
-		A0557CF22A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Release-output-files.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = A0557CD12A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Release-output-files.xcfilelist */; };
-		A0557CF32A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Debug-input-files.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = A0557CD32A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Debug-input-files.xcfilelist */; };
-		A0557CF42A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Debug-output-files.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = A0557CD42A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Debug-output-files.xcfilelist */; };
-		A0557CF52A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = A0557CD52A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks.sh */; };
-		A0557CF62A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0557CD62A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-Info.plist */; };
-		A0557CF72A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A0557CD72A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits.release.xcconfig */; };
-		A0557CF82A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Release-input-files.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = A0557CD82A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Release-input-files.xcfilelist */; };
-		A0557CF92A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0557CD92A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-acknowledgements.plist */; };
-		A0557CFA2A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A0557CDB2A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits.debug.xcconfig */; };
-		A0557CFB2A87F17100FAF1A8 /* YandexMobileMetrica.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A0557CDD2A87F17000FAF1A8 /* YandexMobileMetrica.debug.xcconfig */; };
-		A0557CFC2A87F17100FAF1A8 /* YandexMobileMetrica-xcframeworks-output-files.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = A0557CDE2A87F17000FAF1A8 /* YandexMobileMetrica-xcframeworks-output-files.xcfilelist */; };
-		A0557CFD2A87F17100FAF1A8 /* YandexMobileMetrica-xcframeworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = A0557CDF2A87F17000FAF1A8 /* YandexMobileMetrica-xcframeworks.sh */; };
-		A0557CFE2A87F17100FAF1A8 /* YandexMobileMetrica.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A0557CE02A87F17000FAF1A8 /* YandexMobileMetrica.release.xcconfig */; };
-		A0557CFF2A87F17100FAF1A8 /* YandexMobileMetrica-xcframeworks-input-files.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = A0557CE12A87F17000FAF1A8 /* YandexMobileMetrica-xcframeworks-input-files.xcfilelist */; };
-		A0557D002A87F17100FAF1A8 /* Manifest.lock in Resources */ = {isa = PBXBuildFile; fileRef = A0557CE22A87F17000FAF1A8 /* Manifest.lock */; };
-		A0557D012A87F17100FAF1A8 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = A0557CE62A87F17000FAF1A8 /* LICENSE.md */; };
-		A0557D022A87F17100FAF1A8 /* YandexMobileMetrica.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0557CE82A87F17000FAF1A8 /* YandexMobileMetrica.xcframework */; };
-		A0557D032A87F17100FAF1A8 /* YandexMobileMetricaCrashes.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0557CE92A87F17000FAF1A8 /* YandexMobileMetricaCrashes.xcframework */; };
-		A0557D042A87F17100FAF1A8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A0557CEA2A87F17000FAF1A8 /* README.md */; };
-		A0557D052A87F17100FAF1A8 /* helper in Resources */ = {isa = PBXBuildFile; fileRef = A0557CEB2A87F17000FAF1A8 /* helper */; };
 		A0557D072A87F17800FAF1A8 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = A0557D062A87F17700FAF1A8 /* Podfile.lock */; };
-		A0557D092A87F17E00FAF1A8 /* Tracker_for_tracking_habits.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = A0557D082A87F17E00FAF1A8 /* Tracker_for_tracking_habits.xcworkspace */; };
+		A0963A682AA2FC3200F62966 /* MainTabBarControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0963A672AA2FC3200F62966 /* MainTabBarControllerTestCase.swift */; };
+		A0963A762AA303A700F62966 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = A0963A752AA303A700F62966 /* SnapshotTesting */; };
 		A097021E2A610241002789C3 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A097021C2A610241002789C3 /* DataModel.xcdatamodeld */; };
 		A0A9E8392A5B014400E54622 /* ScheduleSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A9E8382A5B014400E54622 /* ScheduleSerializer.swift */; };
 		A0A9E83B2A5B014900E54622 /* TestDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A9E83A2A5B014900E54622 /* TestDataLoader.swift */; };
@@ -83,17 +63,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A0557CEE2A87F17000FAF1A8 /* PBXContainerItemProxy */ = {
+		A0963A622AA2FC0000F62966 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A0557CCA2A87F17000FAF1A8 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 784A1A8C9DD7B4C73784DFAFBC9654A1;
-			remoteInfo = "Pods-Tracker_for_tracking_habits";
+			containerPortal = A02FA5232A50929B002398BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A02FA52A2A50929B002398BE;
+			remoteInfo = Tracker_for_tracking_habits;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C6B94F32D6D0A31222107C1 /* Pods-Tracker_for_tracking_habitsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker_for_tracking_habitsTests.debug.xcconfig"; path = "Target Support Files/Pods-Tracker_for_tracking_habitsTests/Pods-Tracker_for_tracking_habitsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3E2263271D9520C6874078E2 /* Pods-Tracker_for_tracking_habits.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker_for_tracking_habits.release.xcconfig"; path = "Target Support Files/Pods-Tracker_for_tracking_habits/Pods-Tracker_for_tracking_habits.release.xcconfig"; sourceTree = "<group>"; };
 		4E74B6156F2C892033A966E3 /* Pods_Tracker_for_tracking_habits.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tracker_for_tracking_habits.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7198D849A421E808E6615D65 /* Pods-Tracker_for_tracking_habits.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker_for_tracking_habits.debug.xcconfig"; path = "Target Support Files/Pods-Tracker_for_tracking_habits/Pods-Tracker_for_tracking_habits.debug.xcconfig"; sourceTree = "<group>"; };
+		784BFBAC3323A4D87B3F6A67 /* Pods_Tracker_for_tracking_habitsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tracker_for_tracking_habitsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00E98142A5D1E7800883A0F /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		A00E98162A5D1E7C00883A0F /* OnboardingPageStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageStorage.swift; sourceTree = "<group>"; };
 		A00E98182A5D1F3D00883A0F /* CreateCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCategoryViewController.swift; sourceTree = "<group>"; };
@@ -115,33 +99,9 @@
 		A0557C842A87E3D100FAF1A8 /* StatisticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 		A0557C872A87E7CE00FAF1A8 /* AnalyticService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticService.swift; sourceTree = "<group>"; };
 		A0557C892A87EBA800FAF1A8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
-		A0557CCA2A87F17000FAF1A8 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Pods.xcodeproj; sourceTree = "<group>"; };
-		A0557CCF2A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-dummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Pods-Tracker_for_tracking_habits-dummy.m"; sourceTree = "<group>"; };
-		A0557CD02A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-acknowledgements.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Pods-Tracker_for_tracking_habits-acknowledgements.markdown"; sourceTree = "<group>"; };
-		A0557CD12A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Release-output-files.xcfilelist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcfilelist; path = "Pods-Tracker_for_tracking_habits-frameworks-Release-output-files.xcfilelist"; sourceTree = "<group>"; };
-		A0557CD22A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pods-Tracker_for_tracking_habits-umbrella.h"; sourceTree = "<group>"; };
-		A0557CD32A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Debug-input-files.xcfilelist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcfilelist; path = "Pods-Tracker_for_tracking_habits-frameworks-Debug-input-files.xcfilelist"; sourceTree = "<group>"; };
-		A0557CD42A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Debug-output-files.xcfilelist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcfilelist; path = "Pods-Tracker_for_tracking_habits-frameworks-Debug-output-files.xcfilelist"; sourceTree = "<group>"; };
-		A0557CD52A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "Pods-Tracker_for_tracking_habits-frameworks.sh"; sourceTree = "<group>"; };
-		A0557CD62A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-Tracker_for_tracking_habits-Info.plist"; sourceTree = "<group>"; };
-		A0557CD72A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Pods-Tracker_for_tracking_habits.release.xcconfig"; sourceTree = "<group>"; };
-		A0557CD82A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Release-input-files.xcfilelist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcfilelist; path = "Pods-Tracker_for_tracking_habits-frameworks-Release-input-files.xcfilelist"; sourceTree = "<group>"; };
-		A0557CD92A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-Tracker_for_tracking_habits-acknowledgements.plist"; sourceTree = "<group>"; };
-		A0557CDA2A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Tracker_for_tracking_habits.modulemap"; sourceTree = "<group>"; };
-		A0557CDB2A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Pods-Tracker_for_tracking_habits.debug.xcconfig"; sourceTree = "<group>"; };
-		A0557CDD2A87F17000FAF1A8 /* YandexMobileMetrica.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = YandexMobileMetrica.debug.xcconfig; sourceTree = "<group>"; };
-		A0557CDE2A87F17000FAF1A8 /* YandexMobileMetrica-xcframeworks-output-files.xcfilelist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcfilelist; path = "YandexMobileMetrica-xcframeworks-output-files.xcfilelist"; sourceTree = "<group>"; };
-		A0557CDF2A87F17000FAF1A8 /* YandexMobileMetrica-xcframeworks.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "YandexMobileMetrica-xcframeworks.sh"; sourceTree = "<group>"; };
-		A0557CE02A87F17000FAF1A8 /* YandexMobileMetrica.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = YandexMobileMetrica.release.xcconfig; sourceTree = "<group>"; };
-		A0557CE12A87F17000FAF1A8 /* YandexMobileMetrica-xcframeworks-input-files.xcfilelist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcfilelist; path = "YandexMobileMetrica-xcframeworks-input-files.xcfilelist"; sourceTree = "<group>"; };
-		A0557CE22A87F17000FAF1A8 /* Manifest.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Manifest.lock; sourceTree = "<group>"; };
-		A0557CE62A87F17000FAF1A8 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		A0557CE82A87F17000FAF1A8 /* YandexMobileMetrica.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = YandexMobileMetrica.xcframework; sourceTree = "<group>"; };
-		A0557CE92A87F17000FAF1A8 /* YandexMobileMetricaCrashes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = YandexMobileMetricaCrashes.xcframework; sourceTree = "<group>"; };
-		A0557CEA2A87F17000FAF1A8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		A0557CEB2A87F17000FAF1A8 /* helper */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = helper; sourceTree = "<group>"; };
 		A0557D062A87F17700FAF1A8 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
-		A0557D082A87F17E00FAF1A8 /* Tracker_for_tracking_habits.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Tracker_for_tracking_habits.xcworkspace; sourceTree = "<group>"; };
+		A0963A5E2AA2FC0000F62966 /* Tracker_for_tracking_habitsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tracker_for_tracking_habitsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0963A672AA2FC3200F62966 /* MainTabBarControllerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarControllerTestCase.swift; sourceTree = "<group>"; };
 		A097021D2A610241002789C3 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		A0A9E8382A5B014400E54622 /* ScheduleSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSerializer.swift; sourceTree = "<group>"; };
 		A0A9E83A2A5B014900E54622 /* TestDataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDataLoader.swift; sourceTree = "<group>"; };
@@ -173,8 +133,7 @@
 		A0E181BA2A527D960012330B /* TrackersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackersViewController.swift; sourceTree = "<group>"; };
 		A0E181BB2A527D960012330B /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A0E181BC2A527D960012330B /* ConfigureScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureScheduleViewController.swift; sourceTree = "<group>"; };
-		D69E469542AC974F9E18B167 /* Pods-Tracker_for_tracking_habits.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker_for_tracking_habits.release.xcconfig"; path = "Target Support Files/Pods-Tracker_for_tracking_habits/Pods-Tracker_for_tracking_habits.release.xcconfig"; sourceTree = "<group>"; };
-		EDEDB1FECC1DBC4C19B8CF98 /* Pods-Tracker_for_tracking_habits.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker_for_tracking_habits.debug.xcconfig"; path = "Target Support Files/Pods-Tracker_for_tracking_habits/Pods-Tracker_for_tracking_habits.debug.xcconfig"; sourceTree = "<group>"; };
+		A1747477EBB70AB56AFAF610 /* Pods-Tracker_for_tracking_habitsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker_for_tracking_habitsTests.release.xcconfig"; path = "Target Support Files/Pods-Tracker_for_tracking_habitsTests/Pods-Tracker_for_tracking_habitsTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,20 +141,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0557D022A87F17100FAF1A8 /* YandexMobileMetrica.xcframework in Frameworks */,
 				31D09FDBC96C0FBFC7F39B16 /* Pods_Tracker_for_tracking_habits.framework in Frameworks */,
-				A0557D032A87F17100FAF1A8 /* YandexMobileMetricaCrashes.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0963A5B2AA2FC0000F62966 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0361DAB543F6A85B4C9C1FB3 /* Pods_Tracker_for_tracking_habitsTests.framework in Frameworks */,
+				A0963A762AA303A700F62966 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F137C05571E37F8EA6B7749 /* Pods */ = {
+		2916650C6B3A840200F4450E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EDEDB1FECC1DBC4C19B8CF98 /* Pods-Tracker_for_tracking_habits.debug.xcconfig */,
-				D69E469542AC974F9E18B167 /* Pods-Tracker_for_tracking_habits.release.xcconfig */,
+				7198D849A421E808E6615D65 /* Pods-Tracker_for_tracking_habits.debug.xcconfig */,
+				3E2263271D9520C6874078E2 /* Pods-Tracker_for_tracking_habits.release.xcconfig */,
+				2C6B94F32D6D0A31222107C1 /* Pods-Tracker_for_tracking_habitsTests.debug.xcconfig */,
+				A1747477EBB70AB56AFAF610 /* Pods-Tracker_for_tracking_habitsTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -212,14 +180,13 @@
 		A02FA5222A50929B002398BE = {
 			isa = PBXGroup;
 			children = (
-				A0557D082A87F17E00FAF1A8 /* Tracker_for_tracking_habits.xcworkspace */,
 				A0557D062A87F17700FAF1A8 /* Podfile.lock */,
-				A0557CC92A87F17000FAF1A8 /* Pods */,
 				A0557C892A87EBA800FAF1A8 /* Podfile */,
 				A02FA52D2A50929B002398BE /* Tracker_for_tracking_habits */,
+				A0963A5F2AA2FC0000F62966 /* Tracker_for_tracking_habitsTests */,
 				A02FA52C2A50929B002398BE /* Products */,
-				1F137C05571E37F8EA6B7749 /* Pods */,
 				BFC13E2F7BF79BD931DC4C6B /* Frameworks */,
+				2916650C6B3A840200F4450E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				A02FA52B2A50929B002398BE /* Tracker_for_tracking_habits.app */,
+				A0963A5E2AA2FC0000F62966 /* Tracker_for_tracking_habitsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -270,100 +238,12 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		A0557CC92A87F17000FAF1A8 /* Pods */ = {
+		A0963A5F2AA2FC0000F62966 /* Tracker_for_tracking_habitsTests */ = {
 			isa = PBXGroup;
 			children = (
-				A0557CCA2A87F17000FAF1A8 /* Pods.xcodeproj */,
-				A0557CCD2A87F17000FAF1A8 /* Target Support Files */,
-				A0557CE22A87F17000FAF1A8 /* Manifest.lock */,
-				A0557CE32A87F17000FAF1A8 /* Local Podspecs */,
-				A0557CE42A87F17000FAF1A8 /* Headers */,
-				A0557CE52A87F17000FAF1A8 /* YandexMobileMetrica */,
+				A0963A672AA2FC3200F62966 /* MainTabBarControllerTestCase.swift */,
 			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		A0557CCB2A87F17000FAF1A8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A0557CEF2A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		A0557CCD2A87F17000FAF1A8 /* Target Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				A0557CCE2A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits */,
-				A0557CDC2A87F17000FAF1A8 /* YandexMobileMetrica */,
-			);
-			path = "Target Support Files";
-			sourceTree = "<group>";
-		};
-		A0557CCE2A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits */ = {
-			isa = PBXGroup;
-			children = (
-				A0557CCF2A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-dummy.m */,
-				A0557CD02A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-acknowledgements.markdown */,
-				A0557CD12A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Release-output-files.xcfilelist */,
-				A0557CD22A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-umbrella.h */,
-				A0557CD32A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Debug-input-files.xcfilelist */,
-				A0557CD42A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Debug-output-files.xcfilelist */,
-				A0557CD52A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks.sh */,
-				A0557CD62A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-Info.plist */,
-				A0557CD72A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits.release.xcconfig */,
-				A0557CD82A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Release-input-files.xcfilelist */,
-				A0557CD92A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits-acknowledgements.plist */,
-				A0557CDA2A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits.modulemap */,
-				A0557CDB2A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits.debug.xcconfig */,
-			);
-			path = "Pods-Tracker_for_tracking_habits";
-			sourceTree = "<group>";
-		};
-		A0557CDC2A87F17000FAF1A8 /* YandexMobileMetrica */ = {
-			isa = PBXGroup;
-			children = (
-				A0557CDD2A87F17000FAF1A8 /* YandexMobileMetrica.debug.xcconfig */,
-				A0557CDE2A87F17000FAF1A8 /* YandexMobileMetrica-xcframeworks-output-files.xcfilelist */,
-				A0557CDF2A87F17000FAF1A8 /* YandexMobileMetrica-xcframeworks.sh */,
-				A0557CE02A87F17000FAF1A8 /* YandexMobileMetrica.release.xcconfig */,
-				A0557CE12A87F17000FAF1A8 /* YandexMobileMetrica-xcframeworks-input-files.xcfilelist */,
-			);
-			path = YandexMobileMetrica;
-			sourceTree = "<group>";
-		};
-		A0557CE32A87F17000FAF1A8 /* Local Podspecs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Local Podspecs";
-			sourceTree = "<group>";
-		};
-		A0557CE42A87F17000FAF1A8 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
-		A0557CE52A87F17000FAF1A8 /* YandexMobileMetrica */ = {
-			isa = PBXGroup;
-			children = (
-				A0557CE62A87F17000FAF1A8 /* LICENSE.md */,
-				A0557CE72A87F17000FAF1A8 /* dynamic */,
-				A0557CEA2A87F17000FAF1A8 /* README.md */,
-				A0557CEB2A87F17000FAF1A8 /* helper */,
-			);
-			path = YandexMobileMetrica;
-			sourceTree = "<group>";
-		};
-		A0557CE72A87F17000FAF1A8 /* dynamic */ = {
-			isa = PBXGroup;
-			children = (
-				A0557CE82A87F17000FAF1A8 /* YandexMobileMetrica.xcframework */,
-				A0557CE92A87F17000FAF1A8 /* YandexMobileMetricaCrashes.xcframework */,
-			);
-			path = dynamic;
+			path = Tracker_for_tracking_habitsTests;
 			sourceTree = "<group>";
 		};
 		A0A9E8482A5B036100E54622 /* Stores */ = {
@@ -451,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				4E74B6156F2C892033A966E3 /* Pods_Tracker_for_tracking_habits.framework */,
+				784BFBAC3323A4D87B3F6A67 /* Pods_Tracker_for_tracking_habitsTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -473,9 +354,33 @@
 			dependencies = (
 			);
 			name = Tracker_for_tracking_habits;
+			packageProductDependencies = (
+			);
 			productName = Tracker_for_tracking_habits;
 			productReference = A02FA52B2A50929B002398BE /* Tracker_for_tracking_habits.app */;
 			productType = "com.apple.product-type.application";
+		};
+		A0963A5D2AA2FC0000F62966 /* Tracker_for_tracking_habitsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0963A662AA2FC0000F62966 /* Build configuration list for PBXNativeTarget "Tracker_for_tracking_habitsTests" */;
+			buildPhases = (
+				ED10D9D04D0B24D514A7B644 /* [CP] Check Pods Manifest.lock */,
+				A0963A5A2AA2FC0000F62966 /* Sources */,
+				A0963A5B2AA2FC0000F62966 /* Frameworks */,
+				A0963A5C2AA2FC0000F62966 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0963A632AA2FC0000F62966 /* PBXTargetDependency */,
+			);
+			name = Tracker_for_tracking_habitsTests;
+			packageProductDependencies = (
+				A0963A752AA303A700F62966 /* SnapshotTesting */,
+			);
+			productName = Tracker_for_tracking_habitsTests;
+			productReference = A0963A5E2AA2FC0000F62966 /* Tracker_for_tracking_habitsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -490,6 +395,10 @@
 					A02FA52A2A50929B002398BE = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
+					A0963A5D2AA2FC0000F62966 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = A02FA52A2A50929B002398BE;
+					};
 				};
 			};
 			buildConfigurationList = A02FA5262A50929B002398BE /* Build configuration list for PBXProject "Tracker_for_tracking_habits" */;
@@ -502,64 +411,38 @@
 				ru,
 			);
 			mainGroup = A02FA5222A50929B002398BE;
+			packageReferences = (
+				A0963A692AA2FC8B00F62966 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
 			productRefGroup = A02FA52C2A50929B002398BE /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = A0557CCB2A87F17000FAF1A8 /* Products */;
-					ProjectRef = A0557CCA2A87F17000FAF1A8 /* Pods.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				A02FA52A2A50929B002398BE /* Tracker_for_tracking_habits */,
+				A0963A5D2AA2FC0000F62966 /* Tracker_for_tracking_habitsTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		A0557CEF2A87F17000FAF1A8 /* Pods-Tracker_for_tracking_habits */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			name = "Pods-Tracker_for_tracking_habits";
-			path = Pods_Tracker_for_tracking_habits.framework;
-			remoteRef = A0557CEE2A87F17000FAF1A8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A02FA5292A50929B002398BE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0557CFE2A87F17100FAF1A8 /* YandexMobileMetrica.release.xcconfig in Resources */,
 				A0557C8A2A87EBA800FAF1A8 /* Podfile in Resources */,
 				A0557D072A87F17800FAF1A8 /* Podfile.lock in Resources */,
 				A0A9E8542A5B065700E54622 /* Main.storyboard in Resources */,
-				A0557CF32A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Debug-input-files.xcfilelist in Resources */,
-				A0557CF72A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits.release.xcconfig in Resources */,
-				A0557D052A87F17100FAF1A8 /* helper in Resources */,
-				A0557CFA2A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits.debug.xcconfig in Resources */,
-				A0557D042A87F17100FAF1A8 /* README.md in Resources */,
-				A0557CF62A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-Info.plist in Resources */,
-				A0557CFD2A87F17100FAF1A8 /* YandexMobileMetrica-xcframeworks.sh in Resources */,
-				A0557CF52A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks.sh in Resources */,
 				A0557C822A87E2B200FAF1A8 /* Localizable.strings in Resources */,
-				A0557CF22A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Release-output-files.xcfilelist in Resources */,
 				A02FA53B2A50929C002398BE /* LaunchScreen.storyboard in Resources */,
 				A0557C832A87E2B200FAF1A8 /* Localizable.stringsdict in Resources */,
-				A0557D012A87F17100FAF1A8 /* LICENSE.md in Resources */,
-				A0557CF42A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Debug-output-files.xcfilelist in Resources */,
-				A0557D092A87F17E00FAF1A8 /* Tracker_for_tracking_habits.xcworkspace in Resources */,
-				A0557CF82A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-frameworks-Release-input-files.xcfilelist in Resources */,
-				A0557D002A87F17100FAF1A8 /* Manifest.lock in Resources */,
-				A0557CFF2A87F17100FAF1A8 /* YandexMobileMetrica-xcframeworks-input-files.xcfilelist in Resources */,
 				A02FA5382A50929C002398BE /* Assets.xcassets in Resources */,
-				A0557CF12A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-acknowledgements.markdown in Resources */,
-				A0557CFB2A87F17100FAF1A8 /* YandexMobileMetrica.debug.xcconfig in Resources */,
-				A0557CFC2A87F17100FAF1A8 /* YandexMobileMetrica-xcframeworks-output-files.xcfilelist in Resources */,
-				A0557CF92A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-acknowledgements.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0963A5C2AA2FC0000F62966 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +465,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Tracker_for_tracking_habits-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED10D9D04D0B24D514A7B644 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tracker_for_tracking_habitsTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -623,7 +528,6 @@
 				A0E181992A527D4C0012330B /* UIViewControllerExtension.swift in Sources */,
 				A0E1819E2A527D5F0012330B /* CategoryModel.swift in Sources */,
 				A00E98212A5D203300883A0F /* OnboardingPageView.swift in Sources */,
-				A0557CF02A87F17100FAF1A8 /* Pods-Tracker_for_tracking_habits-dummy.m in Sources */,
 				A0E181A62A527D7C0012330B /* CollectionWidthParameters.swift in Sources */,
 				A097021E2A610241002789C3 /* DataModel.xcdatamodeld in Sources */,
 				A0E181982A527D4C0012330B /* UIColorExtension.swift in Sources */,
@@ -658,7 +562,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A0963A5A2AA2FC0000F62966 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0963A682AA2FC3200F62966 /* MainTabBarControllerTestCase.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A0963A632AA2FC0000F62966 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A02FA52A2A50929B002398BE /* Tracker_for_tracking_habits */;
+			targetProxy = A0963A622AA2FC0000F62966 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A02FA5392A50929C002398BE /* LaunchScreen.storyboard */ = {
@@ -702,6 +622,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -762,6 +683,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -814,7 +736,7 @@
 		};
 		A02FA5402A50929C002398BE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EDEDB1FECC1DBC4C19B8CF98 /* Pods-Tracker_for_tracking_habits.debug.xcconfig */;
+			baseConfigurationReference = 7198D849A421E808E6615D65 /* Pods-Tracker_for_tracking_habits.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -844,7 +766,7 @@
 		};
 		A02FA5412A50929C002398BE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D69E469542AC974F9E18B167 /* Pods-Tracker_for_tracking_habits.release.xcconfig */;
+			baseConfigurationReference = 3E2263271D9520C6874078E2 /* Pods-Tracker_for_tracking_habits.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -872,6 +794,44 @@
 			};
 			name = Release;
 		};
+		A0963A642AA2FC0000F62966 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C6B94F32D6D0A31222107C1 /* Pods-Tracker_for_tracking_habitsTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZUWV6H3CB2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.grand-roman.Tracker-for-tracking-habitsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tracker_for_tracking_habits.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tracker_for_tracking_habits";
+			};
+			name = Debug;
+		};
+		A0963A652AA2FC0000F62966 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1747477EBB70AB56AFAF610 /* Pods-Tracker_for_tracking_habitsTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZUWV6H3CB2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.grand-roman.Tracker-for-tracking-habitsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tracker_for_tracking_habits.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tracker_for_tracking_habits";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -893,7 +853,35 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		A0963A662AA2FC0000F62966 /* Build configuration list for PBXNativeTarget "Tracker_for_tracking_habitsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0963A642AA2FC0000F62966 /* Debug */,
+				A0963A652AA2FC0000F62966 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A0963A692AA2FC8B00F62966 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A0963A752AA303A700F62966 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0963A692AA2FC8B00F62966 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A097021C2A610241002789C3 /* DataModel.xcdatamodeld */ = {
