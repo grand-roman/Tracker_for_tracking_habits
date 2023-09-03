@@ -205,7 +205,7 @@ class CreateTrackerViewController: UIViewController {
             mainStack.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -16),
             mainStack.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
             mainStack.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor)
-            ])
+        ])
 
         view.layoutIfNeeded()
         let contentHeight = emojiColorCollection.collectionViewLayout.collectionViewContentSize.height
@@ -239,7 +239,7 @@ class CreateTrackerViewController: UIViewController {
 
             buttonStack.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor, constant: 20),
             buttonStack.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor, constant: -20)
-            ])
+        ])
         return mainStack
     }
 
