@@ -14,7 +14,7 @@ final class CategoryListViewModel {
         categoryList = fetchCategories()
         guard let currentTitle = currentCategoryTitle,
             let index = self.categoryList.firstIndex(where: { $0.title == currentTitle })
-            else {
+        else {
             return
         }
         self.selectCategory(at: index)

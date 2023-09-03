@@ -142,7 +142,7 @@ final class TrackersViewController: UIViewController {
             placeholderView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             placeholderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             placeholderView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-            ])
+        ])
     }
 
     private func makeHeaderStack() -> UIStackView {
@@ -179,7 +179,7 @@ extension TrackersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let trackerCell = collectionView
             .dequeueReusableCell(withReuseIdentifier: TrackerCollectionViewCell.identifier, for: indexPath) as? TrackerCollectionViewCell
-            else {
+        else {
             preconditionFailure("Failed to cast UICollectionViewCell as TrackerCollectionViewCell")
         }
         let tracker = visibleCategories[indexPath.section].trackers[indexPath.item]
@@ -195,7 +195,7 @@ extension TrackersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView
             .dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewHeader.identifier, for: indexPath) as? CollectionViewHeader
-            else {
+        else {
             preconditionFailure("Failed to cast UICollectionReusableView as CollectionViewHeader")
         }
         header.configure(model: visibleCategories[indexPath.section])
@@ -244,7 +244,7 @@ extension TrackersViewController: UICollectionViewDelegate {
                         self.deleteTracker(at: indexPath)
                     }
                 )
-                ])
+            ])
         })
     }
 
@@ -362,59 +362,55 @@ extension TrackersViewController: AddTrackerViewControllerDelegate {
         if model.schedule.isEmpty {
             model.date = selectedDate
         }
-        do {
-            try trackerStore.addTracker(model: model, to: category)
-        } catch let error {
-            print(error.localizedDescription)
-        }
+        try! trackerStore.addTracker(model: model, to: category)
         reloadVisibleCategories()
         dismiss(animated: true)
     }
 }
 
 extension TrackersViewController: EditTrackerViewControllerDelegate {
-
+    
     func didSaveEditedTracker(model: TrackerModel, in category: String) {
         try! trackerStore.saveTracker(model: model, in: category)
         reloadVisibleCategories()
         dismiss(animated: true)
     }
-
+    
     func didCancelEditTracker() {
         dismiss(animated: true)
     }
 }
 
 extension TrackersViewController: TrackerStoreDelegate {
-
+    
     func storeDidChangeTrackers() {
         categories = categoryStore.fetchedCategories
     }
 }
 
 extension TrackersViewController: RecordStoreDelegate {
-
+    
     func storeDidChangeRecords() {
         completedRecords = recordStore.fetchedRecords
     }
 }
 
 private extension TrackersViewController {
-
+    
     @objc func didChangeSelectedDate() {
         presentedViewController?.dismiss(animated: false)
         selectedDate = datePicker.date
         reloadVisibleCategories()
     }
-
+    
     @objc func reloadVisibleCategories() {
         visibleCategories = []
         let searchText = searchField.text ?? ""
         var pinnedTrackers: Array<TrackerModel> = []
-
+        
         for category in categories {
             var visibleTrackers: Array<TrackerModel> = []
-
+            
             for tracker in category.trackers {
                 if tracker.isPinned {
                     pinnedTrackers.append(tracker)
@@ -445,32 +441,32 @@ private extension TrackersViewController {
         showAppropriatePlaceholder()
         trackerCollection.reloadData()
     }
-
+    
     func isVisibleHabit(model: TrackerModel) -> Bool {
         if let weekDay = WeekDay(rawValue: calculateWeekDayNumber(for: selectedDate)),
-            model.schedule.contains(weekDay)
+           model.schedule.contains(weekDay)
         {
             return true
         }
         return false
     }
-
+    
     func isVisibleEvent(model: TrackerModel) -> Bool {
         if let date = model.date,
-            Calendar.current.isDate(date, inSameDayAs: selectedDate)
+           Calendar.current.isDate(date, inSameDayAs: selectedDate)
         {
             return true
         }
         return false
     }
-
+    
     func calculateWeekDayNumber(for date: Date) -> Int {
         let calendar = Calendar.current
         let weekDayNumber = calendar.component(.weekday, from: date) // first day of week is Sunday
         let daysInWeek = 7
         return (weekDayNumber - calendar.firstWeekday + daysInWeek) % daysInWeek + 1
     }
-
+    
     func showAppropriatePlaceholder() {
         if categories.isEmpty {
             placeholderView.isHidden = false

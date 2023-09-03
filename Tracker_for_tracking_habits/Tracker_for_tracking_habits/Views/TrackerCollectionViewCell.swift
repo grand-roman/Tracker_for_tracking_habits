@@ -132,7 +132,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
             let isCompleted = isCompleted,
             let trackerID = trackerID,
             let indexPath = indexPath
-            else {
+        else {
             return
         }
         AnalyticService.shared.report(event: "click", with: ["screen": "Main", "item": "track"])

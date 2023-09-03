@@ -48,7 +48,7 @@ final class RecordStore: NSObject {
     var fetchedRecords: Array<RecordModel> {
         guard let entities = resultsController.fetchedObjects,
             let models = try? entities.map({ try convert(entity: $0) })
-            else {
+        else {
             return []
         }
         return models

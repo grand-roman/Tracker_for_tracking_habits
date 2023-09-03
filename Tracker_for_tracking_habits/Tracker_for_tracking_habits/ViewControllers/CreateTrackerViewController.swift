@@ -29,7 +29,6 @@ class CreateTrackerViewController: UIViewController {
         let table = UITableView(frame: .zero)
 
         table.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
-        table.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         table.isScrollEnabled = false
 
         table.separatorColor = .ypGray
@@ -65,8 +64,8 @@ class CreateTrackerViewController: UIViewController {
         let button = UIButton(type: .custom)
 
         button.setTitle(NSLocalizedString("cancelButton.title", comment: ""), for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.setTitleColor(.ypRed, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
 
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16
@@ -101,9 +100,9 @@ class CreateTrackerViewController: UIViewController {
     ]
 
     fileprivate let colors: Array<UIColor> = [
-            .ypSelection1, .ypSelection2, .ypSelection3, .ypSelection4, .ypSelection5, .ypSelection6,
-            .ypSelection7, .ypSelection8, .ypSelection9, .ypSelection10, .ypSelection11, .ypSelection12,
-            .ypSelection13, .ypSelection14, .ypSelection15, .ypSelection16, .ypSelection17, .ypSelection18
+        .ypSelection1, .ypSelection2, .ypSelection3, .ypSelection4, .ypSelection5, .ypSelection6,
+        .ypSelection7, .ypSelection8, .ypSelection9, .ypSelection10, .ypSelection11, .ypSelection12,
+        .ypSelection13, .ypSelection14, .ypSelection15, .ypSelection16, .ypSelection17, .ypSelection18
     ]
 
     private var settings: Array<SettingOptions> = []
@@ -155,7 +154,7 @@ class CreateTrackerViewController: UIViewController {
 
     @objc fileprivate func didTapCreateButton() {
         guard let trackerName = nameField.text,
-            let categoryTitle = selectedCategoryTitle
+              let categoryTitle = selectedCategoryTitle
         else {
             return
         }
@@ -307,7 +306,7 @@ class CreateTrackerViewController: UIViewController {
         guard let settingCell = settingTable
             .cellForRow(at: IndexPath(row: index, section: 0)) as? SettingTableViewCell
         else {
-            return
+            preconditionFailure("Failed to cast UITableViewCell as SettingTableViewCell")
         }
         settingCell.configure(caption: text)
         settingTable.reloadData()
@@ -323,7 +322,7 @@ extension CreateTrackerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let settingCell = tableView
             .dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as? SettingTableViewCell
-            else {
+        else {
             preconditionFailure("Failed to cast UITableViewCell as SettingTableViewCell")
         }
         settingCell.configure(options: settings[indexPath.row])
@@ -362,7 +361,7 @@ extension CreateTrackerViewController: UICollectionViewDataSource {
         case 0:
             guard let emojiCell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: EmojiCollectionViewCell.identifier, for: indexPath) as? EmojiCollectionViewCell
-                else {
+            else {
                 preconditionFailure("Failed to cast UICollectionViewCell as EmojiCollectionViewCell")
             }
             emojiCell.configure(emoji: emojis[indexPath.item])
@@ -370,7 +369,7 @@ extension CreateTrackerViewController: UICollectionViewDataSource {
         case 1:
             guard let colorCell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: ColorCollectionViewCell.identifier, for: indexPath) as? ColorCollectionViewCell
-                else {
+            else {
                 preconditionFailure("Failed to cast UICollectionViewCell as ColorCollectionViewCell")
             }
             colorCell.configure(color: colors[indexPath.item])
@@ -383,7 +382,7 @@ extension CreateTrackerViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView
             .dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewHeader.identifier, for: indexPath) as? CollectionViewHeader
-            else {
+        else {
             preconditionFailure("Failed to cast UICollectionReusableView as CollectionViewHeader")
         }
         switch indexPath.section {
@@ -539,7 +538,7 @@ class EditTrackerViewController: CreateTrackerViewController {
 
     override func didTapCreateButton() {
         guard let trackerName = nameField.text,
-            let categoryTitle = selectedCategoryTitle
+              let categoryTitle = selectedCategoryTitle
         else {
             return
         }

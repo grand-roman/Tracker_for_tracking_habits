@@ -71,7 +71,7 @@ final class ConfigureScheduleViewController: UIViewController {
             SwitchOptions(weekDay: .friday, name: NSLocalizedString("friday.full", comment: ""), isOn: currentSchedule.contains(.friday)),
             SwitchOptions(weekDay: .saturday, name: NSLocalizedString("saturday.full", comment: ""), isOn: currentSchedule.contains(.saturday)),
             SwitchOptions(weekDay: .sunday, name: NSLocalizedString("sunday.full", comment: ""), isOn: currentSchedule.contains(.sunday))
-            ])
+        ])
     }
 
     private func setupNavigationBar() {
@@ -100,7 +100,7 @@ final class ConfigureScheduleViewController: UIViewController {
             doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-            ])
+        ])
     }
 
     private func setDoneButtonState() {
@@ -125,7 +125,7 @@ extension ConfigureScheduleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let switchCell = tableView
             .dequeueReusableCell(withIdentifier: SwitchTableViewCell.identifier, for: indexPath) as? SwitchTableViewCell
-            else {
+        else {
             preconditionFailure("Failed to cast UITableViewCell as SwitchTableViewCell")
         }
         switchCell.delegate = self

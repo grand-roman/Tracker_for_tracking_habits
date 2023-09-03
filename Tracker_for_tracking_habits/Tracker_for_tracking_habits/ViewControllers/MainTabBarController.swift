@@ -11,6 +11,12 @@ final class MainTabBarController: UITabBarController {
         setupTabBarItems()
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        tabBar.layer.borderColor = UIColor.tabBarBorderColor.cgColor
+    }
+
     private func setupTabBarItems() {
         let trackersController = UINavigationController(rootViewController: TrackersViewController())
         let statisticsController = UINavigationController(rootViewController: StatisticsViewController())

@@ -90,7 +90,7 @@ final class SelectCategoryViewController: UIViewController {
 
         guard let currentTitle = currentCategoryTitle,
             let index = viewModel.categoryList.firstIndex(where: { $0.title == currentTitle })
-            else {
+        else {
             return
         }
         viewModel.selectCategory(at: index)
@@ -135,7 +135,7 @@ final class SelectCategoryViewController: UIViewController {
             addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-            ])
+        ])
     }
 
     private func reloadTableData() {
@@ -154,7 +154,7 @@ extension SelectCategoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let checkCell = tableView
             .dequeueReusableCell(withIdentifier: CheckTableViewCell.identifier, for: indexPath) as? CheckTableViewCell
-            else {
+        else {
             preconditionFailure("Failed to cast UITableViewCell as CheckTableViewCell")
         }
         checkCell.viewModel = viewModel.categoryList[indexPath.row]

@@ -93,7 +93,7 @@ final class OnboardingPageViewController: UIPageViewController {
             nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-            ])
+        ])
     }
 }
 
@@ -143,7 +143,7 @@ extension OnboardingPageViewController: UIPageViewControllerDelegate {
         guard completed,
             let currentController = pageViewController.viewControllers?.first,
             let currentIndex = pageControllers.firstIndex(of: currentController)
-            else {
+        else {
             return
         }
         pageControl.currentPage = currentIndex
