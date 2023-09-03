@@ -1,19 +1,22 @@
 import UIKit
 
 extension UIColor {
-    static let ypBackgroundDay = UIColor(named: "YPBackgroundDay")!
-    static let ypBlackDay = UIColor(named: "YPBlackDay")!
-    static let ypWhiteDay = UIColor(named: "YPWhiteDay")!
-
-    static let ypBackgroundNight = UIColor(named: "YPBackgroundNight")!
-    static let ypBlackNight = UIColor(named: "YPBlackNight")!
-    static let ypWhiteNight = UIColor(named: "YPWhiteNight")!
-
+    static let ypBackgroundAdaptive = UIColor(named: "YPBackgroundAdaptive")!
+    static let ypBlackAdaptive = UIColor(named: "YPBlackAdaptive")!
+    static let ypWhiteAdaptive = UIColor(named: "YPWhiteAdaptive")!
+    
+    static let ypBackground = UIColor(named: "YPBackground")!
+    static let ypBlack = UIColor(named: "YPBlack")!
+    static let ypWhite = UIColor(named: "YPWhite")!
     static let ypGray = UIColor(named: "YPGray")!
     static let ypLightGray = UIColor(named: "YPLightGray")!
     static let ypRed = UIColor(named: "YPRed")!
     static let ypBlue = UIColor(named: "YPBlue")!
-
+    
+    static let ypRedGradient = UIColor(named: "YPRedGradient")!
+    static let ypGreenGradient = UIColor(named: "YPGreenGradient")!
+    static let ypBlueGradient = UIColor(named: "YPBlueGradient")!
+    
     static let ypSelection1 = UIColor(named: "YPSelection1")!
     static let ypSelection2 = UIColor(named: "YPSelection2")!
     static let ypSelection3 = UIColor(named: "YPSelection3")!
@@ -32,4 +35,8 @@ extension UIColor {
     static let ypSelection16 = UIColor(named: "YPSelection16")!
     static let ypSelection17 = UIColor(named: "YPSelection17")!
     static let ypSelection18 = UIColor(named: "YPSelection18")!
+    
+    static var tabBarBorderColor: UIColor = UIColor { trait in
+        return trait.userInterfaceStyle == .light ? .ypGray : .ypBlack
+    }
 }

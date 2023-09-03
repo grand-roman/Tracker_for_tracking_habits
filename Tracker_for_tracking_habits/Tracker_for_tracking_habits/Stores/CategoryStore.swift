@@ -50,7 +50,7 @@ final class CategoryStore: NSObject {
     var fetchedCategories: Array<CategoryModel> {
         guard let entities = resultsController.fetchedObjects,
             let models = try? entities.map({ try convert(entity: $0) })
-            else {
+        else {
             return []
         }
         return models

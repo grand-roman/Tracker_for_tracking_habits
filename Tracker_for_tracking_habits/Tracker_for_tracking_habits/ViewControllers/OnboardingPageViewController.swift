@@ -12,11 +12,11 @@ final class OnboardingPageViewController: UIPageViewController {
 
         viewBlue.configure(
             background: UIImage(named: "OnboardingBackgroundBlue"),
-            title: "Отслеживайте только\nто, что хотите"
+            title: NSLocalizedString("blueOnboarding.title", comment: "")
         )
         viewRed.configure(
             background: UIImage(named: "OnboardingBackgroundRed"),
-            title: "Даже если это\nне литры воды и йога"
+            title: NSLocalizedString("redOnboarding.title", comment: "")
         )
         controllerBlue.view = viewBlue
         controllerRed.view = viewRed
@@ -31,7 +31,7 @@ final class OnboardingPageViewController: UIPageViewController {
         control.currentPage = 0
 
         control.pageIndicatorTintColor = .ypGray
-        control.currentPageIndicatorTintColor = .ypBlackDay
+        control.currentPageIndicatorTintColor = .ypBlack
 
         control.addTarget(self, action: #selector(didTapPageControl), for: .valueChanged)
         return control
@@ -40,9 +40,9 @@ final class OnboardingPageViewController: UIPageViewController {
     private lazy var nextButton: UIButton = {
         let button = UIButton(type: .custom)
 
-        button.setTitle("Вот это технологии!", for: .normal)
+        button.setTitle(NSLocalizedString("onboardingNextButton.title", comment: ""), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
-        button.backgroundColor = .ypBlackDay
+        button.backgroundColor = .ypBlack
 
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16
@@ -93,7 +93,7 @@ final class OnboardingPageViewController: UIPageViewController {
             nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-            ])
+        ])
     }
 }
 
@@ -143,7 +143,7 @@ extension OnboardingPageViewController: UIPageViewControllerDelegate {
         guard completed,
             let currentController = pageViewController.viewControllers?.first,
             let currentIndex = pageControllers.firstIndex(of: currentController)
-            else {
+        else {
             return
         }
         pageControl.currentPage = currentIndex

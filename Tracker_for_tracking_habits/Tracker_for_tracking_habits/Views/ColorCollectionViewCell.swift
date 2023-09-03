@@ -13,7 +13,7 @@ final class ColorCollectionViewCell: UICollectionViewCell {
         view.heightAnchor.constraint(equalTo: view.widthAnchor).isActive = true
 
         view.layer.borderWidth = 3
-        view.layer.borderColor = UIColor.ypWhiteDay.cgColor
+        view.layer.borderColor = UIColor.ypWhiteAdaptive.cgColor
 
         return view
     }()
@@ -48,7 +48,7 @@ final class ColorCollectionViewCell: UICollectionViewCell {
     }
 
     func deselectColor() {
-        canvasView.layer.borderColor = UIColor.ypWhiteDay.cgColor
+        canvasView.layer.borderColor = UIColor.ypWhiteAdaptive.cgColor
     }
 
     private func makeViewLayout() {
@@ -64,6 +64,6 @@ final class ColorCollectionViewCell: UICollectionViewCell {
 
             colorView.centerXAnchor.constraint(equalTo: canvasView.centerXAnchor),
             colorView.centerYAnchor.constraint(equalTo: canvasView.centerYAnchor)
-            ])
+        ])
     }
 }

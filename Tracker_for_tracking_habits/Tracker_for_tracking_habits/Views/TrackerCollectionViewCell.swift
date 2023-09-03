@@ -22,7 +22,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
 
     private let emojiView: UIView = {
         let view = UIView()
-        view.backgroundColor = .ypBackgroundDay
+        view.backgroundColor = .ypBackground
 
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 12
@@ -38,10 +38,19 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
+    private let pinImage: UIImageView = {
+        let image = UIImageView()
+
+        image.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        image.heightAnchor.constraint(equalTo: image.widthAnchor).isActive = true
+
+        return image
+    }()
+
     private let nameLabel: UILabel = {
         let label = UILabel()
 
-        label.textColor = .ypWhiteDay
+        label.textColor = .ypWhite
         label.font = .systemFont(ofSize: 12, weight: .medium)
         label.numberOfLines = 2
 
@@ -51,7 +60,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
     private let counterLabel: UILabel = {
         let label = UILabel()
 
-        label.textColor = .ypBlackDay
+        label.textColor = .ypBlackAdaptive
         label.font = .systemFont(ofSize: 12, weight: .medium)
 
         return label
@@ -98,15 +107,16 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
         self.isCompleted = isCompleted
         self.isHabit = !model.schedule.isEmpty
 
-        nameLabel.text = model.name
-        emojiLabel.text = model.emoji
         canvasView.backgroundColor = model.color
+        emojiLabel.text = model.emoji
+        pinImage.image = model.isPinned ? UIImage(named: "PinSymbol") : UIImage()
+        nameLabel.text = model.name
 
         if isHabit! {
             setCounter(days: completedDays)
 
             let image = isCompleted ? UIImage(named: "CheckMarkButton") : UIImage(named: "PlusButton")
-            incrementButton.setImage(image?.withTintColor(.ypWhiteDay), for: .normal)
+            incrementButton.setImage(image?.withTintColor(.ypWhiteAdaptive), for: .normal)
             incrementButton.backgroundColor = isCompleted ? model.color.withAlphaComponent(0.3) : model.color
         } else {
             incrementButton.backgroundColor = model.color
@@ -114,20 +124,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
     }
 
     private func setCounter(days: Int) {
-        let remainder = days % 100
-
-        if (11...14).contains(remainder) {
-            counterLabel.text = "\(days) дней"
-        } else {
-            switch remainder % 10 {
-            case 1:
-                counterLabel.text = "\(days) день"
-            case 2...4:
-                counterLabel.text = "\(days) дня"
-            default:
-                counterLabel.text = "\(days) дней"
-            }
-        }
+        counterLabel.text = String.localizedStringWithFormat(NSLocalizedString("completedDays", comment: ""), days)
     }
 
     @objc private func incrementDayCounter() {
@@ -135,9 +132,11 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
             let isCompleted = isCompleted,
             let trackerID = trackerID,
             let indexPath = indexPath
-            else {
+        else {
             return
         }
+        AnalyticService.shared.report(event: "click", with: ["screen": "Main", "item": "track"])
+
         if isCompleted {
             delegate?.uncompleteTracker(with: trackerID, at: indexPath)
         } else {
@@ -149,6 +148,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(canvasView)
         contentView.addSubview(emojiView)
         contentView.addSubview(emojiLabel)
+        contentView.addSubview(pinImage)
         contentView.addSubview(nameLabel)
         contentView.addSubview(counterLabel)
         contentView.addSubview(incrementButton)
@@ -156,6 +156,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
         canvasView.translatesAutoresizingMaskIntoConstraints = false
         emojiView.translatesAutoresizingMaskIntoConstraints = false
         emojiLabel.translatesAutoresizingMaskIntoConstraints = false
+        pinImage.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         counterLabel.translatesAutoresizingMaskIntoConstraints = false
         incrementButton.translatesAutoresizingMaskIntoConstraints = false
@@ -171,6 +172,9 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
             emojiLabel.centerXAnchor.constraint(equalTo: emojiView.centerXAnchor),
             emojiLabel.centerYAnchor.constraint(equalTo: emojiView.centerYAnchor),
 
+            pinImage.topAnchor.constraint(equalTo: canvasView.topAnchor, constant: 12),
+            pinImage.trailingAnchor.constraint(equalTo: canvasView.trailingAnchor, constant: -4),
+
             nameLabel.bottomAnchor.constraint(equalTo: canvasView.bottomAnchor, constant: -12),
             nameLabel.leadingAnchor.constraint(equalTo: canvasView.leadingAnchor, constant: 12),
             nameLabel.trailingAnchor.constraint(equalTo: canvasView.trailingAnchor, constant: -12),
@@ -180,6 +184,6 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
 
             incrementButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             incrementButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12)
-            ])
+        ])
     }
 }

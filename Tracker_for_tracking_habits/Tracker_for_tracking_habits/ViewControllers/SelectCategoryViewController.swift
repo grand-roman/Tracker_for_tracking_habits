@@ -23,8 +23,11 @@ final class SelectCategoryViewController: UIViewController {
         let table = UITableView(frame: .zero)
 
         table.register(CheckTableViewCell.self, forCellReuseIdentifier: CheckTableViewCell.identifier)
-        table.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         table.isScrollEnabled = false
+
+        table.separatorColor = .ypGray
+        table.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        table.tableHeaderView = UIView()
 
         table.layer.masksToBounds = true
         table.layer.cornerRadius = 16
@@ -37,7 +40,7 @@ final class SelectCategoryViewController: UIViewController {
 
         view.configure(
             image: UIImage(named: "CategoriesPlaceholder"),
-            caption: "Привычки и события можно\nобъединить по смыслу"
+            caption: NSLocalizedString("categoriesPlaceholder.caption", comment: "")
         )
         return view
     }()
@@ -45,9 +48,10 @@ final class SelectCategoryViewController: UIViewController {
     private lazy var addButton: UIButton = {
         let button = UIButton(type: .custom)
 
-        button.setTitle("Добавить категорию", for: .normal)
+        button.setTitle(NSLocalizedString("addCategoryButton.title", comment: ""), for: .normal)
+        button.setTitleColor(.ypWhiteAdaptive, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
-        button.backgroundColor = .ypBlackDay
+        button.backgroundColor = .ypBlackAdaptive
 
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16
@@ -81,6 +85,17 @@ final class SelectCategoryViewController: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        guard let currentTitle = currentCategoryTitle,
+            let index = viewModel.categoryList.firstIndex(where: { $0.title == currentTitle })
+        else {
+            return
+        }
+        viewModel.selectCategory(at: index)
+    }
+
     @objc private func didTapAddButton() {
         let createController = CreateCategoryViewController()
         createController.delegate = self
@@ -89,15 +104,15 @@ final class SelectCategoryViewController: UIViewController {
 
     private func setupNavigationBar() {
         let titleAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.ypBlackDay,
+            NSAttributedString.Key.foregroundColor: UIColor.ypBlackAdaptive,
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes
-        navigationController?.navigationBar.topItem?.title = "Категория"
+        navigationController?.navigationBar.topItem?.title = NSLocalizedString("category.title", comment: "")
     }
 
     private func makeViewLayout() {
-        view.backgroundColor = .ypWhiteDay
+        view.backgroundColor = .ypWhiteAdaptive
 
         view.addSubview(checkTable)
         view.addSubview(placeholderView)
@@ -120,7 +135,7 @@ final class SelectCategoryViewController: UIViewController {
             addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-            ])
+        ])
     }
 
     private func reloadTableData() {
@@ -139,15 +154,11 @@ extension SelectCategoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let checkCell = tableView
             .dequeueReusableCell(withIdentifier: CheckTableViewCell.identifier, for: indexPath) as? CheckTableViewCell
-            else {
+        else {
             preconditionFailure("Failed to cast UITableViewCell as CheckTableViewCell")
         }
         checkCell.viewModel = viewModel.categoryList[indexPath.row]
 
-        if viewModel.shouldHideSeparator(at: indexPath) {
-            let centerX = checkCell.bounds.width / 2
-            checkCell.separatorInset = UIEdgeInsets(top: 0, left: centerX, bottom: 0, right: centerX)
-        }
         return checkCell
     }
 }
@@ -163,7 +174,7 @@ extension SelectCategoryViewController: UITableViewDelegate {
 extension SelectCategoryViewController: CreateCategoryViewControllerDelegate {
 
     func didCreate(category title: String) {
-        guard let index = viewModel.getIndex(at: title) else {
+        guard let index = viewModel.categoryList.firstIndex(where: { $0.title == title }) else {
             return
         }
         viewModel.selectCategory(at: index)

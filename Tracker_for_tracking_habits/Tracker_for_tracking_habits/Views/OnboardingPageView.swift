@@ -7,7 +7,7 @@ final class OnboardingPageView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
 
-        label.textColor = .ypBlackDay
+        label.textColor = .ypBlack
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 32, weight: .bold)
         label.numberOfLines = 2
@@ -46,6 +46,6 @@ final class OnboardingPageView: UIView {
             titleLabel.topAnchor.constraint(equalTo: backgroundView.centerYAnchor, constant: 24),
             titleLabel.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -16)
-            ])
+        ])
     }
 }

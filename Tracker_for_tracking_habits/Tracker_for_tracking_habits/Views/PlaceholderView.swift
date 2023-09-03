@@ -14,7 +14,7 @@ final class PlaceholderView: UIView {
     private let captionLabel: UILabel = {
         let label = UILabel()
 
-        label.textColor = .ypBlackDay
+        label.textColor = .ypBlackAdaptive
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 12, weight: .medium)
         label.numberOfLines = 2
@@ -50,6 +50,6 @@ final class PlaceholderView: UIView {
 
             captionLabel.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
             captionLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8)
-            ])
+        ])
     }
 }

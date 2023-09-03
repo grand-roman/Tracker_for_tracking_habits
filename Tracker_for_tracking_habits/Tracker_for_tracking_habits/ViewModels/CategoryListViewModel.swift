@@ -14,7 +14,7 @@ final class CategoryListViewModel {
         categoryList = fetchCategories()
         guard let currentTitle = currentCategoryTitle,
             let index = self.categoryList.firstIndex(where: { $0.title == currentTitle })
-            else {
+        else {
             return
         }
         self.selectCategory(at: index)
@@ -47,10 +47,6 @@ final class CategoryListViewModel {
 
     func isPlaceholderHidden() -> Bool {
         return !self.categoryList.isEmpty
-    }
-
-    func shouldHideSeparator(at indexPath: IndexPath) -> Bool {
-        return indexPath.row == self.categoryList.count - 1
     }
 
     private func fetchCategories() -> Array<CategoryViewModel> {

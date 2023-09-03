@@ -40,7 +40,7 @@ final class EmojiCollectionViewCell: UICollectionViewCell {
     }
 
     func deselectEmoji() {
-        canvasView.backgroundColor = .ypWhiteDay
+        canvasView.backgroundColor = .ypWhiteAdaptive
     }
 
     private func makeViewLayout() {

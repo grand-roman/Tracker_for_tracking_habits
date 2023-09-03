@@ -7,7 +7,7 @@ final class CollectionViewHeader: UICollectionReusableView {
     private let titleLabel: UILabel = {
         let label = UILabel()
 
-        label.textColor = .ypBlackDay
+        label.textColor = .ypBlackAdaptive
         label.font = .systemFont(ofSize: 19, weight: .bold)
 
         return label
@@ -38,6 +38,6 @@ final class CollectionViewHeader: UICollectionReusableView {
         NSLayoutConstraint.activate([
             titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 28)
-            ])
+        ])
     }
 }

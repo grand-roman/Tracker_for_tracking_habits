@@ -52,7 +52,7 @@ final class TrackerStore: NSObject {
     var fetchedTrackers: Array<TrackerModel> {
         guard let entities = resultsController.fetchedObjects,
             let models = try? entities.map({ try convert(entity: $0) })
-            else {
+        else {
             return []
         }
         return models
@@ -63,6 +63,11 @@ final class TrackerStore: NSObject {
         try context.save()
     }
 
+    func saveTracker(model: TrackerModel, in category: String) throws {
+        try updateTracker(entity: fetchTracker(by: model.id), using: model, under: category)
+        try context.save()
+    }
+
     func updateTracker(entity: TrackerEntity, using model: TrackerModel, under title: String) throws {
         entity.trackerID = model.id
         entity.name = model.name
@@ -70,8 +75,14 @@ final class TrackerStore: NSObject {
         entity.emoji = model.emoji
         entity.weekDays = scheduleSerializer.serialize(schedule: model.schedule)
         entity.eventDate = model.date
+        entity.isPinned = model.isPinned
         entity.category = try fetchCategory(by: title)
-        entity.records = NSSet()
+        entity.records = entity.records
+    }
+
+    func deleteTracker(model: TrackerModel) throws {
+        context.delete(try fetchTracker(by: model.id))
+        try context.save()
     }
 
     func convert(entity: TrackerEntity) throws -> TrackerModel {
@@ -93,13 +104,20 @@ final class TrackerStore: NSObject {
             color: colorSerializer.deserialize(hex: hexColor),
             emoji: emoji,
             schedule: scheduleSerializer.deserialize(days: entity.weekDays),
-            date: entity.eventDate
+            date: entity.eventDate,
+            isPinned: entity.isPinned
         )
     }
 
     private func fetchCategory(by title: String) throws -> CategoryEntity {
         let request = NSFetchRequest<CategoryEntity>(entityName: "CategoryEntity")
         request.predicate = NSPredicate(format: "%K == %@", #keyPath(CategoryEntity.title), title)
+        return try context.fetch(request)[0]
+    }
+
+    private func fetchTracker(by id: UUID) throws -> TrackerEntity {
+        let request = NSFetchRequest<TrackerEntity>(entityName: "TrackerEntity")
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(TrackerEntity.trackerID), id as CVarArg)
         return try context.fetch(request)[0]
     }
 }

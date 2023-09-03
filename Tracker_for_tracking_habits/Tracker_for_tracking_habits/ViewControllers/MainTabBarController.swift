@@ -6,9 +6,15 @@ final class MainTabBarController: UITabBarController {
         super.viewDidLoad()
 
         tabBar.layer.borderWidth = 1
-        tabBar.layer.borderColor = UIColor.ypGray.cgColor
+        tabBar.layer.borderColor = UIColor.tabBarBorderColor.cgColor
 
         setupTabBarItems()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        tabBar.layer.borderColor = UIColor.tabBarBorderColor.cgColor
     }
 
     private func setupTabBarItems() {
@@ -16,12 +22,12 @@ final class MainTabBarController: UITabBarController {
         let statisticsController = UINavigationController(rootViewController: StatisticsViewController())
 
         trackersController.tabBarItem = UITabBarItem(
-            title: "Трекеры",
+            title: NSLocalizedString("trackers.title", comment: ""),
             image: UIImage(named: "TrackersTab"),
             tag: 0
         )
         statisticsController.tabBarItem = UITabBarItem(
-            title: "Статистика",
+            title: NSLocalizedString("statistics.title", comment: ""),
             image: UIImage(named: "StatisticsTab"),
             tag: 1
         )
