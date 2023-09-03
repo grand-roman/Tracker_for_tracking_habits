@@ -62,7 +62,7 @@ final class StatisticsViewController: UIViewController {
             placeholderView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             placeholderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             placeholderView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-            ])
+        ])
 
         view.layoutIfNeeded()
         drawBorderAroundCompletedStatistic()

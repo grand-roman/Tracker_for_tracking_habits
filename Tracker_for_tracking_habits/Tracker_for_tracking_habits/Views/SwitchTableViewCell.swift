@@ -68,6 +68,6 @@ final class SwitchTableViewCell: UITableViewCell {
 
             switchControl.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             switchControl.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-            ])
+        ])
     }
 }

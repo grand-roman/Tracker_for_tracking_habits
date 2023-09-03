@@ -62,7 +62,7 @@ final class SettingTableViewCell: UITableViewCell {
 
             accessoryImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
             accessoryImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-            ])
+        ])
     }
 
     private func makeLabelStack() -> UIStackView {

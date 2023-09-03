@@ -38,6 +38,6 @@ final class CollectionViewHeader: UICollectionReusableView {
         NSLayoutConstraint.activate([
             titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 28)
-            ])
+        ])
     }
 }

@@ -184,6 +184,6 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
 
             incrementButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             incrementButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12)
-            ])
+        ])
     }
 }

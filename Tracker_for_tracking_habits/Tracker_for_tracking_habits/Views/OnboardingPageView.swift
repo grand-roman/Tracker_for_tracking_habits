@@ -46,6 +46,6 @@ final class OnboardingPageView: UIView {
             titleLabel.topAnchor.constraint(equalTo: backgroundView.centerYAnchor, constant: 24),
             titleLabel.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -16)
-            ])
+        ])
     }
 }

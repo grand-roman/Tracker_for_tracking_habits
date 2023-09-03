@@ -82,7 +82,7 @@ final class AddTrackerViewController: UIViewController {
             buttonStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             buttonStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             buttonStack.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-            ])
+        ])
     }
 
     private func makeButtonStack() -> UIStackView {

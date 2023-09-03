@@ -48,6 +48,6 @@ final class CheckTableViewCell: UITableViewCell {
 
             checkImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             checkImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-            ])
+        ])
     }
 }

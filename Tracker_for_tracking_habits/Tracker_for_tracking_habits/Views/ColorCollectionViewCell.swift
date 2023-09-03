@@ -64,6 +64,6 @@ final class ColorCollectionViewCell: UICollectionViewCell {
 
             colorView.centerXAnchor.constraint(equalTo: canvasView.centerXAnchor),
             colorView.centerYAnchor.constraint(equalTo: canvasView.centerYAnchor)
-            ])
+        ])
     }
 }

@@ -10,10 +10,8 @@ final class AnalyticService {
 
     func activate() {
         guard let configuration = YMMYandexMetricaConfiguration(apiKey: apiKey) else {
-            print("Failed to activate")
             return
         }
-        print("Activate done!!!!!!!!!!!!!!!!!!!!!!!!!!")
         YMMYandexMetrica.activate(with: configuration)
     }
 

@@ -57,6 +57,6 @@ final class StatisticView: UIView {
 
             captionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
             captionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12)
-            ])
+        ])
     }
 }
