@@ -262,6 +262,8 @@ extension TrackersViewController: UICollectionViewDelegate {
     }
 
     private func pinTracker(at indexPath: IndexPath) {
+        AnalyticService.shared.report(event: "click", with: ["screen": "Main", "item": "filter"])
+        
         var tracker = visibleCategories[indexPath.section].trackers[indexPath.item]
         tracker.isPinned = !tracker.isPinned
 
