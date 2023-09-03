@@ -6,6 +6,7 @@ import SnapshotTesting
 final class MainTabBarControllerTestCase: XCTestCase {
     
     func testSnapshotMatch() {
-        assertSnapshot(matching: MainTabBarController(), as: .image)
+        assertSnapshot(matching: MainTabBarController(), as: .image(traits: .init(userInterfaceStyle: .light)))
+        assertSnapshot(matching: MainTabBarController(), as: .image(traits: .init(userInterfaceStyle: .dark)))
     }
 }
